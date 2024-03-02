@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FirefighterProject.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace FirefighterProject.View
 {
     public partial class LoginView : Form
     {
+        LoginController contorller = new LoginController();
         public LoginView()
         {
             InitializeComponent();
@@ -25,12 +27,26 @@ namespace FirefighterProject.View
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            var username = txtBoxUser.Text;
+            var password = txtBoxPass.Text;
+            var validUser = contorller.IsLogin(username, password);
+            if (validUser)
+            {
+                MainView m = new MainView();
+                m.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Wrong username or password");
+            }
         }
 
         private void lblCreate_Click(object sender, EventArgs e)
         {
-
+            RegisterView m = new RegisterView();
+            m.Show();
+            this.Hide();
         }
     }
 }

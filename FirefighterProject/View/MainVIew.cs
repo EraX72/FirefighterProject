@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FirefighterProject.View
 {
-    public partial class MainVIew : Form
+    public partial class MainView : Form
     {
-        public MainVIew()
+        public MainView()
         {
             InitializeComponent();
         }

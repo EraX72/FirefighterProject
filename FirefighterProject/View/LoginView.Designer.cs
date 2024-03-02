@@ -34,10 +34,10 @@
             this.txtBoxPass = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pbox = new System.Windows.Forms.PictureBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblAccount = new System.Windows.Forms.Label();
             this.lblCreate = new System.Windows.Forms.Label();
+            this.pbox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,18 +110,6 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Password";
             // 
-            // pbox
-            // 
-            this.pbox.BackgroundImage = global::FirefighterProject.Properties.Resources.firefight;
-            this.pbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbox.Image = global::FirefighterProject.Properties.Resources.firefighterPh;
-            this.pbox.Location = new System.Drawing.Point(0, 0);
-            this.pbox.Name = "pbox";
-            this.pbox.Size = new System.Drawing.Size(395, 463);
-            this.pbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbox.TabIndex = 7;
-            this.pbox.TabStop = false;
-            // 
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.DarkRed;
@@ -157,6 +145,18 @@
             this.lblCreate.TabIndex = 10;
             this.lblCreate.Text = "Create Account";
             this.lblCreate.Click += new System.EventHandler(this.lblCreate_Click);
+            // 
+            // pbox
+            // 
+            this.pbox.BackgroundImage = global::FirefighterProject.Properties.Resources.firefight;
+            this.pbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbox.Image = global::FirefighterProject.Properties.Resources.firefighterPh;
+            this.pbox.Location = new System.Drawing.Point(0, 0);
+            this.pbox.Name = "pbox";
+            this.pbox.Size = new System.Drawing.Size(395, 463);
+            this.pbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbox.TabIndex = 7;
+            this.pbox.TabStop = false;
             // 
             // LoginView
             // 
