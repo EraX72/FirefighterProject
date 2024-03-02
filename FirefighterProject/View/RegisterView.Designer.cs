@@ -37,9 +37,9 @@
             this.txtBoxUser = new System.Windows.Forms.TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pbox = new System.Windows.Forms.PictureBox();
             this.lblConfirm = new System.Windows.Forms.Label();
             this.txtBoxConfirm = new System.Windows.Forms.TextBox();
+            this.pbox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,19 +146,6 @@
             this.lblTitle.Text = "FlameGuard Connect\r\n";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pbox
-            // 
-            this.pbox.BackgroundImage = global::FirefighterProject.Properties.Resources.firefight;
-            this.pbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbox.Image = global::FirefighterProject.Properties.Resources.firefighterPhFlip;
-            this.pbox.Location = new System.Drawing.Point(405, -7);
-            this.pbox.Name = "pbox";
-            this.pbox.Size = new System.Drawing.Size(395, 463);
-            this.pbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbox.TabIndex = 17;
-            this.pbox.TabStop = false;
-            this.pbox.Click += new System.EventHandler(this.pbox_Click);
-            // 
             // lblConfirm
             // 
             this.lblConfirm.AutoSize = true;
@@ -180,15 +167,28 @@
             this.txtBoxConfirm.Size = new System.Drawing.Size(274, 38);
             this.txtBoxConfirm.TabIndex = 21;
             // 
+            // pbox
+            // 
+            this.pbox.BackgroundImage = global::FirefighterProject.Properties.Resources.firefight;
+            this.pbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbox.Image = global::FirefighterProject.Properties.Resources.firefighterPhFlip;
+            this.pbox.Location = new System.Drawing.Point(405, -7);
+            this.pbox.Name = "pbox";
+            this.pbox.Size = new System.Drawing.Size(395, 463);
+            this.pbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbox.TabIndex = 17;
+            this.pbox.TabStop = false;
+            this.pbox.Click += new System.EventHandler(this.pbox_Click);
+            // 
             // RegisterView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblConfirm);
-            this.Controls.Add(this.txtBoxConfirm);
             this.Controls.Add(this.lblCreate);
             this.Controls.Add(this.lblAccount);
+            this.Controls.Add(this.lblConfirm);
+            this.Controls.Add(this.txtBoxConfirm);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);

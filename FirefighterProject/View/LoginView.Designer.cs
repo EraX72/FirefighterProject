@@ -128,7 +128,7 @@
             this.lblAccount.AutoSize = true;
             this.lblAccount.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAccount.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lblAccount.Location = new System.Drawing.Point(493, 339);
+            this.lblAccount.Location = new System.Drawing.Point(493, 351);
             this.lblAccount.Name = "lblAccount";
             this.lblAccount.Size = new System.Drawing.Size(188, 19);
             this.lblAccount.TabIndex = 9;
@@ -139,7 +139,7 @@
             this.lblCreate.AutoSize = true;
             this.lblCreate.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCreate.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblCreate.Location = new System.Drawing.Point(525, 369);
+            this.lblCreate.Location = new System.Drawing.Point(527, 379);
             this.lblCreate.Name = "lblCreate";
             this.lblCreate.Size = new System.Drawing.Size(126, 19);
             this.lblCreate.TabIndex = 10;
