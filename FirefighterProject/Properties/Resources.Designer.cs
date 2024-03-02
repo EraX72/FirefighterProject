@@ -83,6 +83,16 @@ namespace FirefighterProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap firefighterPhFlip {
+            get {
+                object obj = ResourceManager.GetObject("firefighterPhFlip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap transparent {
             get {
                 object obj = ResourceManager.GetObject("transparent", resourceCulture);
