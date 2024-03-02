@@ -17,9 +17,11 @@ namespace FirefighterProject.View
             InitializeComponent();
         }
 
-        private void pbox_Click(object sender, EventArgs e)
+        private void lblCreate_Click(object sender, EventArgs e)
         {
-
+            LoginView m = new LoginView();
+            m.Show();
+            this.Hide();
         }
     }
 }

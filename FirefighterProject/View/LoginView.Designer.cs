@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblTitleLog = new System.Windows.Forms.Label();
             this.lblLogin = new System.Windows.Forms.Label();
-            this.txtBoxUser = new System.Windows.Forms.TextBox();
-            this.txtBoxPass = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.txtBoxUserLog = new System.Windows.Forms.TextBox();
+            this.txtBoxPassLog = new System.Windows.Forms.TextBox();
+            this.lblUserLog = new System.Windows.Forms.Label();
+            this.lblPassLog = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.lblAccount = new System.Windows.Forms.Label();
+            this.lblAccountLog = new System.Windows.Forms.Label();
             this.lblCreate = new System.Windows.Forms.Label();
-            this.pbox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbox)).BeginInit();
+            this.pboxLog = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxLog)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblTitle
+            // lblTitleLog
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTitle.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(35, 9);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTitle.Size = new System.Drawing.Size(310, 34);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "FlameGuard Connect\r\n";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblTitleLog.AutoSize = true;
+            this.lblTitleLog.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitleLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTitleLog.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleLog.ForeColor = System.Drawing.Color.White;
+            this.lblTitleLog.Location = new System.Drawing.Point(35, 9);
+            this.lblTitleLog.Name = "lblTitleLog";
+            this.lblTitleLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblTitleLog.Size = new System.Drawing.Size(310, 34);
+            this.lblTitleLog.TabIndex = 0;
+            this.lblTitleLog.Text = "FlameGuard Connect\r\n";
+            this.lblTitleLog.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblLogin
             // 
@@ -68,47 +68,47 @@
             this.lblLogin.Text = "LOGIN";
             this.lblLogin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // txtBoxUser
+            // txtBoxUserLog
             // 
-            this.txtBoxUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxUser.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtBoxUser.Location = new System.Drawing.Point(448, 116);
-            this.txtBoxUser.Multiline = true;
-            this.txtBoxUser.Name = "txtBoxUser";
-            this.txtBoxUser.Size = new System.Drawing.Size(274, 38);
-            this.txtBoxUser.TabIndex = 2;
+            this.txtBoxUserLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxUserLog.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtBoxUserLog.Location = new System.Drawing.Point(448, 116);
+            this.txtBoxUserLog.Multiline = true;
+            this.txtBoxUserLog.Name = "txtBoxUserLog";
+            this.txtBoxUserLog.Size = new System.Drawing.Size(274, 38);
+            this.txtBoxUserLog.TabIndex = 2;
             // 
-            // txtBoxPass
+            // txtBoxPassLog
             // 
-            this.txtBoxPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxPass.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtBoxPass.Location = new System.Drawing.Point(448, 203);
-            this.txtBoxPass.Multiline = true;
-            this.txtBoxPass.Name = "txtBoxPass";
-            this.txtBoxPass.Size = new System.Drawing.Size(274, 38);
-            this.txtBoxPass.TabIndex = 4;
+            this.txtBoxPassLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxPassLog.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtBoxPassLog.Location = new System.Drawing.Point(448, 203);
+            this.txtBoxPassLog.Multiline = true;
+            this.txtBoxPassLog.Name = "txtBoxPassLog";
+            this.txtBoxPassLog.Size = new System.Drawing.Size(274, 38);
+            this.txtBoxPassLog.TabIndex = 4;
             // 
-            // label3
+            // lblUserLog
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(444, 94);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 19);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Username";
+            this.lblUserLog.AutoSize = true;
+            this.lblUserLog.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserLog.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblUserLog.Location = new System.Drawing.Point(444, 94);
+            this.lblUserLog.Name = "lblUserLog";
+            this.lblUserLog.Size = new System.Drawing.Size(87, 19);
+            this.lblUserLog.TabIndex = 5;
+            this.lblUserLog.Text = "Username";
             // 
-            // label4
+            // lblPassLog
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(444, 181);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 19);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Password";
+            this.lblPassLog.AutoSize = true;
+            this.lblPassLog.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassLog.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblPassLog.Location = new System.Drawing.Point(444, 181);
+            this.lblPassLog.Name = "lblPassLog";
+            this.lblPassLog.Size = new System.Drawing.Size(86, 19);
+            this.lblPassLog.TabIndex = 6;
+            this.lblPassLog.Text = "Password";
             // 
             // btnLogin
             // 
@@ -123,16 +123,16 @@
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // lblAccount
+            // lblAccountLog
             // 
-            this.lblAccount.AutoSize = true;
-            this.lblAccount.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAccount.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lblAccount.Location = new System.Drawing.Point(493, 351);
-            this.lblAccount.Name = "lblAccount";
-            this.lblAccount.Size = new System.Drawing.Size(188, 19);
-            this.lblAccount.TabIndex = 9;
-            this.lblAccount.Text = "Don\'t Have an Account";
+            this.lblAccountLog.AutoSize = true;
+            this.lblAccountLog.Font = new System.Drawing.Font("Arial", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAccountLog.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblAccountLog.Location = new System.Drawing.Point(493, 351);
+            this.lblAccountLog.Name = "lblAccountLog";
+            this.lblAccountLog.Size = new System.Drawing.Size(188, 19);
+            this.lblAccountLog.TabIndex = 9;
+            this.lblAccountLog.Text = "Don\'t Have an Account";
             // 
             // lblCreate
             // 
@@ -146,17 +146,17 @@
             this.lblCreate.Text = "Create Account";
             this.lblCreate.Click += new System.EventHandler(this.lblCreate_Click);
             // 
-            // pbox
+            // pboxLog
             // 
-            this.pbox.BackgroundImage = global::FirefighterProject.Properties.Resources.firefight;
-            this.pbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbox.Image = global::FirefighterProject.Properties.Resources.firefighterPh;
-            this.pbox.Location = new System.Drawing.Point(0, 0);
-            this.pbox.Name = "pbox";
-            this.pbox.Size = new System.Drawing.Size(395, 463);
-            this.pbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbox.TabIndex = 7;
-            this.pbox.TabStop = false;
+            this.pboxLog.BackgroundImage = global::FirefighterProject.Properties.Resources.firefight;
+            this.pboxLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pboxLog.Image = global::FirefighterProject.Properties.Resources.firefighterPh;
+            this.pboxLog.Location = new System.Drawing.Point(0, 0);
+            this.pboxLog.Name = "pboxLog";
+            this.pboxLog.Size = new System.Drawing.Size(395, 463);
+            this.pboxLog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxLog.TabIndex = 7;
+            this.pboxLog.TabStop = false;
             // 
             // LoginView
             // 
@@ -164,19 +164,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lblCreate);
-            this.Controls.Add(this.lblAccount);
+            this.Controls.Add(this.lblAccountLog);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtBoxPass);
-            this.Controls.Add(this.txtBoxUser);
+            this.Controls.Add(this.lblPassLog);
+            this.Controls.Add(this.lblUserLog);
+            this.Controls.Add(this.txtBoxPassLog);
+            this.Controls.Add(this.txtBoxUserLog);
             this.Controls.Add(this.lblLogin);
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.pbox);
+            this.Controls.Add(this.lblTitleLog);
+            this.Controls.Add(this.pboxLog);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginView";
             this.Text = "LoginView";
             this.Load += new System.EventHandler(this.LoginView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxLog)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,14 +185,14 @@
 
         #endregion
         private System.Windows.Forms.Label lblLogin;
-        private System.Windows.Forms.TextBox txtBoxUser;
-        private System.Windows.Forms.TextBox txtBoxPass;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pbox;
-        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TextBox txtBoxUserLog;
+        private System.Windows.Forms.TextBox txtBoxPassLog;
+        private System.Windows.Forms.Label lblUserLog;
+        private System.Windows.Forms.Label lblPassLog;
+        private System.Windows.Forms.PictureBox pboxLog;
+        private System.Windows.Forms.Label lblTitleLog;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Label lblAccount;
+        private System.Windows.Forms.Label lblAccountLog;
         private System.Windows.Forms.Label lblCreate;
     }
 }

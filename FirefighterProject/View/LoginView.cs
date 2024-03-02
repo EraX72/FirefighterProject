@@ -21,14 +21,14 @@ namespace FirefighterProject.View
 
         private void LoginView_Load(object sender, EventArgs e)
         {
-            lblTitle.Parent = pbox;
-            lblTitle.BackColor = Color.Transparent;
+            lblTitleLog.Parent = pboxLog;
+            lblTitleLog.BackColor = Color.Transparent;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var username = txtBoxUser.Text;
-            var password = txtBoxPass.Text;
+            var username = txtBoxUserLog.Text;
+            var password = txtBoxPassLog.Text;
             var validUser = contorller.IsLogin(username, password);
             if (validUser)
             {
