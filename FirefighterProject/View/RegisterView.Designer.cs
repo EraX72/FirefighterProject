@@ -36,7 +36,6 @@
             this.txtBoxPassReg = new System.Windows.Forms.TextBox();
             this.txtBoxUserReg = new System.Windows.Forms.TextBox();
             this.lblRegister = new System.Windows.Forms.Label();
-            this.lblTitleReg = new System.Windows.Forms.Label();
             this.lblConfirmReg = new System.Windows.Forms.Label();
             this.txtBoxConfirmReg = new System.Windows.Forms.TextBox();
             this.pboxReg = new System.Windows.Forms.PictureBox();
@@ -132,21 +131,6 @@
             this.lblRegister.Text = "REGISTER";
             this.lblRegister.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblTitleReg
-            // 
-            this.lblTitleReg.AutoSize = true;
-            this.lblTitleReg.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitleReg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTitleReg.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleReg.ForeColor = System.Drawing.Color.White;
-            this.lblTitleReg.Location = new System.Drawing.Point(458, 9);
-            this.lblTitleReg.Name = "lblTitleReg";
-            this.lblTitleReg.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTitleReg.Size = new System.Drawing.Size(310, 34);
-            this.lblTitleReg.TabIndex = 11;
-            this.lblTitleReg.Text = "FlameGuard Connect\r\n";
-            this.lblTitleReg.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // lblConfirmReg
             // 
             this.lblConfirmReg.AutoSize = true;
@@ -195,7 +179,6 @@
             this.Controls.Add(this.txtBoxPassReg);
             this.Controls.Add(this.txtBoxUserReg);
             this.Controls.Add(this.lblRegister);
-            this.Controls.Add(this.lblTitleReg);
             this.Controls.Add(this.pboxReg);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RegisterView";
@@ -216,7 +199,6 @@
         private System.Windows.Forms.TextBox txtBoxPassReg;
         private System.Windows.Forms.TextBox txtBoxUserReg;
         private System.Windows.Forms.Label lblRegister;
-        private System.Windows.Forms.Label lblTitleReg;
         private System.Windows.Forms.PictureBox pboxReg;
         private System.Windows.Forms.Label lblConfirmReg;
         private System.Windows.Forms.TextBox txtBoxConfirmReg;

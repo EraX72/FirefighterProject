@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTitleLog = new System.Windows.Forms.Label();
             this.lblLogin = new System.Windows.Forms.Label();
             this.txtBoxUserLog = new System.Windows.Forms.TextBox();
             this.txtBoxPassLog = new System.Windows.Forms.TextBox();
@@ -40,21 +39,6 @@
             this.pboxLog = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pboxLog)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblTitleLog
-            // 
-            this.lblTitleLog.AutoSize = true;
-            this.lblTitleLog.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitleLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTitleLog.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleLog.ForeColor = System.Drawing.Color.White;
-            this.lblTitleLog.Location = new System.Drawing.Point(35, 9);
-            this.lblTitleLog.Name = "lblTitleLog";
-            this.lblTitleLog.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTitleLog.Size = new System.Drawing.Size(310, 34);
-            this.lblTitleLog.TabIndex = 0;
-            this.lblTitleLog.Text = "FlameGuard Connect\r\n";
-            this.lblTitleLog.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblLogin
             // 
@@ -171,7 +155,6 @@
             this.Controls.Add(this.txtBoxPassLog);
             this.Controls.Add(this.txtBoxUserLog);
             this.Controls.Add(this.lblLogin);
-            this.Controls.Add(this.lblTitleLog);
             this.Controls.Add(this.pboxLog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginView";
@@ -190,7 +173,6 @@
         private System.Windows.Forms.Label lblUserLog;
         private System.Windows.Forms.Label lblPassLog;
         private System.Windows.Forms.PictureBox pboxLog;
-        private System.Windows.Forms.Label lblTitleLog;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblAccountLog;
         private System.Windows.Forms.Label lblCreate;
