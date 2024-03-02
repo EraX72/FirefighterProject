@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FirefighterProject
+namespace FirefighterProject.View
 {
-    public partial class Form1 : Form
+    public partial class MainVIew : Form
     {
-        public Form1()
+        public MainVIew()
         {
             InitializeComponent();
         }
