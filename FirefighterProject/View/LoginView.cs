@@ -22,5 +22,15 @@ namespace FirefighterProject.View
             lblTitle.Parent = pbox;
             lblTitle.BackColor = Color.Transparent;
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCreate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
