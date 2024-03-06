@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FirefighterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Firefighters">
+          <Key>
+            <PropertyRef Name="FirefighterID" />
+          </Key>
+          <Property Name="FirefighterID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Rank" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ShiftID" Type="int" />
+          <Property Name="ShiftStartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Firetrucks">
+          <Key>
+            <PropertyRef Name="FiretruckID" />
+          </Key>
+          <Property Name="FiretruckID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Incidents">
+          <Key>
+            <PropertyRef Name="IncidentID" />
+          </Key>
+          <Property Name="IncidentID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AssignedFirefighterID" Type="int" />
+          <Property Name="AssignedFiretruckID" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Firefighter_Incident">
+          <End Role="Firefighters" Type="Self.Firefighters" Multiplicity="0..1" />
+          <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firefighters">
+              <PropertyRef Name="FirefighterID" />
+            </Principal>
+            <Dependent Role="Incidents">
+              <PropertyRef Name="AssignedFirefighterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Firetruck_Incident">
+          <End Role="Firetrucks" Type="Self.Firetrucks" Multiplicity="0..1" />
+          <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firetrucks">
+              <PropertyRef Name="FiretruckID" />
+            </Principal>
+            <Dependent Role="Incidents">
+              <PropertyRef Name="AssignedFiretruckID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FirefighterDBModelStoreContainer">
+          <EntitySet Name="Firefighters" EntityType="Self.Firefighters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firetrucks" EntityType="Self.Firetrucks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Incidents" EntityType="Self.Incidents" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Firefighter_Incident" Association="Self.FK_Firefighter_Incident">
+            <End Role="Firefighters" EntitySet="Firefighters" />
+            <End Role="Incidents" EntitySet="Incidents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Firetruck_Incident" Association="Self.FK_Firetruck_Incident">
+            <End Role="Firetrucks" EntitySet="Firetrucks" />
+            <End Role="Incidents" EntitySet="Incidents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FirefighterDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Firefighters">
+          <Key>
+            <PropertyRef Name="FirefighterID" />
+          </Key>
+          <Property Name="FirefighterID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rank" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShiftID" Type="Int32" />
+          <Property Name="ShiftStartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Incidents" Relationship="Self.FK_Firefighter_Incident" FromRole="Firefighters" ToRole="Incidents" />
+        </EntityType>
+        <EntityType Name="Firetrucks">
+          <Key>
+            <PropertyRef Name="FiretruckID" />
+          </Key>
+          <Property Name="FiretruckID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Incidents" Relationship="Self.FK_Firetruck_Incident" FromRole="Firetrucks" ToRole="Incidents" />
+        </EntityType>
+        <EntityType Name="Incidents">
+          <Key>
+            <PropertyRef Name="IncidentID" />
+          </Key>
+          <Property Name="IncidentID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssignedFirefighterID" Type="Int32" />
+          <Property Name="AssignedFiretruckID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Firefighters" Relationship="Self.FK_Firefighter_Incident" FromRole="Incidents" ToRole="Firefighters" />
+          <NavigationProperty Name="Firetrucks" Relationship="Self.FK_Firetruck_Incident" FromRole="Incidents" ToRole="Firetrucks" />
+        </EntityType>
+        <Association Name="FK_Firefighter_Incident">
+          <End Role="Firefighters" Type="Self.Firefighters" Multiplicity="0..1" />
+          <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firefighters">
+              <PropertyRef Name="FirefighterID" />
+            </Principal>
+            <Dependent Role="Incidents">
+              <PropertyRef Name="AssignedFirefighterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Firetruck_Incident">
+          <End Role="Firetrucks" Type="Self.Firetrucks" Multiplicity="0..1" />
+          <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firetrucks">
+              <PropertyRef Name="FiretruckID" />
+            </Principal>
+            <Dependent Role="Incidents">
+              <PropertyRef Name="AssignedFiretruckID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FirefighterDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Firefighters" EntityType="Self.Firefighters" />
+          <EntitySet Name="Firetrucks" EntityType="Self.Firetrucks" />
+          <EntitySet Name="Incidents" EntityType="Self.Incidents" />
+          <AssociationSet Name="FK_Firefighter_Incident" Association="Self.FK_Firefighter_Incident">
+            <End Role="Firefighters" EntitySet="Firefighters" />
+            <End Role="Incidents" EntitySet="Incidents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Firetruck_Incident" Association="Self.FK_Firetruck_Incident">
+            <End Role="Firetrucks" EntitySet="Firetrucks" />
+            <End Role="Incidents" EntitySet="Incidents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FirefighterDBModelStoreContainer" CdmEntityContainer="FirefighterDBEntities">
+          <EntitySetMapping Name="Firefighters">
+            <EntityTypeMapping TypeName="FirefighterDBModel.Firefighters">
+              <MappingFragment StoreEntitySet="Firefighters">
+                <ScalarProperty Name="FirefighterID" ColumnName="FirefighterID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="ShiftStartDate" ColumnName="ShiftStartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firetrucks">
+            <EntityTypeMapping TypeName="FirefighterDBModel.Firetrucks">
+              <MappingFragment StoreEntitySet="Firetrucks">
+                <ScalarProperty Name="FiretruckID" ColumnName="FiretruckID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Incidents">
+            <EntityTypeMapping TypeName="FirefighterDBModel.Incidents">
+              <MappingFragment StoreEntitySet="Incidents">
+                <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="AssignedFirefighterID" ColumnName="AssignedFirefighterID" />
+                <ScalarProperty Name="AssignedFiretruckID" ColumnName="AssignedFiretruckID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
