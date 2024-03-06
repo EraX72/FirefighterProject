@@ -5,11 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="df8ea5f46a92467b8c6965e4a634a1f6" Name="Diagram1">
-        <EntityTypeShape EntityType="FirefighterDBModel.Firefighters" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirefighterDBModel.Firefighters" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="FirefighterDBModel.Firetrucks" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FirefighterDBModel.Incidents" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FirefighterDBModel.Incidents" Width="1.5" PointX="7.875" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="FirefighterDBModel.FK_Firefighter_Incident" ManuallyRouted="false" />
         <AssociationConnector Association="FirefighterDBModel.FK_Firetruck_Incident" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FirefighterDBModel.User" Width="1.5" PointX="2.875" PointY="2.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

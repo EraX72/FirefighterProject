@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FirefighterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FirefighterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Firefighters">
           <Key>
             <PropertyRef Name="FirefighterID" />
@@ -36,6 +36,14 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="FirefighterID" />
+          </Key>
+          <Property Name="FirefighterID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Firefighter_Incident">
           <End Role="Firefighters" Type="Self.Firefighters" Multiplicity="0..1" />
           <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
@@ -64,6 +72,7 @@
           <EntitySet Name="Firefighters" EntityType="Self.Firefighters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Firetrucks" EntityType="Self.Firetrucks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Incidents" EntityType="Self.Incidents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Firefighter_Incident" Association="Self.FK_Firefighter_Incident">
             <End Role="Firefighters" EntitySet="Firefighters" />
             <End Role="Incidents" EntitySet="Incidents" />
@@ -73,8 +82,7 @@
             <End Role="Incidents" EntitySet="Incidents" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FirefighterDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -149,7 +157,16 @@
             <End Role="Firetrucks" EntitySet="Firetrucks" />
             <End Role="Incidents" EntitySet="Incidents" />
           </AssociationSet>
+          <EntitySet Name="User" EntityType="FirefighterDBModel.User" />
         </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="FirefighterID" />
+          </Key>
+          <Property Name="FirefighterID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -187,6 +204,15 @@
                 <ScalarProperty Name="AssignedFiretruckID" ColumnName="AssignedFiretruckID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="FirefighterDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="FirefighterID" ColumnName="FirefighterID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

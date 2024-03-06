@@ -26,7 +26,7 @@ namespace FirefighterProject.View
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            /*var username = txtBoxUserLog.Text;
+            var username = txtBoxUserLog.Text;
             var password = txtBoxPassLog.Text;
             var validUser = contorller.IsLogin(username, password);
             if (validUser)
@@ -38,7 +38,7 @@ namespace FirefighterProject.View
             else
             {
                 MessageBox.Show("Wrong username or password");
-            }*/
+            }
         }
 
         private void lblCreate_Click(object sender, EventArgs e)

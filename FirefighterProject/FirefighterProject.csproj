@@ -170,6 +170,7 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\RegisterController.cs" />
     <Compile Include="Data\FirefighterDbContext.cs" />
+    <Compile Include="Data\GlobalData.cs" />
     <Compile Include="Model\Firefighters.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
