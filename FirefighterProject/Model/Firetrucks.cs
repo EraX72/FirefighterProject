@@ -21,9 +21,15 @@ namespace FirefighterProject.Model
         }
     
         public int FiretruckID { get; set; }
-        public string Name { get; set; }
-        public string Location { get; set; }
+        public bool IsMondayShift { get; set; }
+        public bool IsTuesdayShift { get; set; }
+        public bool IsWednesdayShift { get; set; }
+        public bool IsThursdayShift { get; set; }
+        public bool IsFridayShift { get; set; }
+        public bool IsSaturdayShift { get; set; }
+        public bool IsSundayShift { get; set; }
     
+        public virtual Firefighters Firefighters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Incidents> Incidents { get; set; }
     }

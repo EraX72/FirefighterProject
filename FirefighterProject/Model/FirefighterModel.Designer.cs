@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\pc1_16\source\repos\EraX72\FirefighterProject\FirefighterProject\Model\FirefighterModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\FirefighterProject\FirefighterProject\Model\FirefighterModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

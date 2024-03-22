@@ -170,29 +170,29 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\RegisterController.cs" />
     <Compile Include="Data\FirefighterDbContext.cs" />
-    <Compile Include="Model\Firefighters.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Firetrucks.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Incidents.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1.Context.cs">
+    <Compile Include="Model\FirefighterModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>FirefighterModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model1.cs">
+    <Compile Include="Model\FirefighterModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>FirefighterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\FirefighterModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FirefighterModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Firefighters.cs">
+      <DependentUpon>FirefighterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Firetrucks.cs">
+      <DependentUpon>FirefighterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Incidents.cs">
+      <DependentUpon>FirefighterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -254,7 +254,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\FirefighterModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirefighterModel.edmx</DependentUpon>
+      <LastGenOutput>FirefighterModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\FirefighterModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirefighterModel.edmx</DependentUpon>
+      <LastGenOutput>FirefighterModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\firefight.jpg" />
   </ItemGroup>
@@ -266,18 +277,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\firefighterPhFlip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Model\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>FirefighterModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FirefighterModel.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

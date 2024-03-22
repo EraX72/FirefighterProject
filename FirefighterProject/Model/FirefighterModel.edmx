@@ -10,53 +10,54 @@
             <PropertyRef Name="FirefighterID" />
           </Key>
           <Property Name="FirefighterID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Rank" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="ShiftID" Type="int" />
-          <Property Name="ShiftStartDate" Type="datetime" />
-          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FiretruckID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Firetrucks">
           <Key>
             <PropertyRef Name="FiretruckID" />
           </Key>
           <Property Name="FiretruckID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Location" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsMondayShift" Type="bit" Nullable="false" />
+          <Property Name="IsTuesdayShift" Type="bit" Nullable="false" />
+          <Property Name="IsWednesdayShift" Type="bit" Nullable="false" />
+          <Property Name="IsThursdayShift" Type="bit" Nullable="false" />
+          <Property Name="IsFridayShift" Type="bit" Nullable="false" />
+          <Property Name="IsSaturdayShift" Type="bit" Nullable="false" />
+          <Property Name="IsSundayShift" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Incidents">
           <Key>
             <PropertyRef Name="IncidentID" />
           </Key>
           <Property Name="IncidentID" Type="int" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Type" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="AssignedFirefighterID" Type="int" />
-          <Property Name="AssignedFiretruckID" Type="int" />
-          <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="WaterUsed" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FiretruckID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Firefighter_Incident">
+        <Association Name="FK__Firefight__Firef__47DBAE45">
+          <End Role="Firetrucks" Type="Self.Firetrucks" Multiplicity="1" />
           <End Role="Firefighters" Type="Self.Firefighters" Multiplicity="0..1" />
-          <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Firefighters">
-              <PropertyRef Name="FirefighterID" />
+            <Principal Role="Firetrucks">
+              <PropertyRef Name="FiretruckID" />
             </Principal>
-            <Dependent Role="Incidents">
-              <PropertyRef Name="AssignedFirefighterID" />
+            <Dependent Role="Firefighters">
+              <PropertyRef Name="FirefighterID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Firetruck_Incident">
-          <End Role="Firetrucks" Type="Self.Firetrucks" Multiplicity="0..1" />
+        <Association Name="FK__Incidents__Firet__48CFD27E">
+          <End Role="Firetrucks" Type="Self.Firetrucks" Multiplicity="1" />
           <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Firetrucks">
               <PropertyRef Name="FiretruckID" />
             </Principal>
             <Dependent Role="Incidents">
-              <PropertyRef Name="AssignedFiretruckID" />
+              <PropertyRef Name="FiretruckID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -64,11 +65,11 @@
           <EntitySet Name="Firefighters" EntityType="Self.Firefighters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Firetrucks" EntityType="Self.Firetrucks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Incidents" EntityType="Self.Incidents" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Firefighter_Incident" Association="Self.FK_Firefighter_Incident">
+          <AssociationSet Name="FK__Firefight__Firef__47DBAE45" Association="Self.FK__Firefight__Firef__47DBAE45">
+            <End Role="Firetrucks" EntitySet="Firetrucks" />
             <End Role="Firefighters" EntitySet="Firefighters" />
-            <End Role="Incidents" EntitySet="Incidents" />
           </AssociationSet>
-          <AssociationSet Name="FK_Firetruck_Incident" Association="Self.FK_Firetruck_Incident">
+          <AssociationSet Name="FK__Incidents__Firet__48CFD27E" Association="Self.FK__Incidents__Firet__48CFD27E">
             <End Role="Firetrucks" EntitySet="Firetrucks" />
             <End Role="Incidents" EntitySet="Incidents" />
           </AssociationSet>
@@ -83,57 +84,58 @@
             <PropertyRef Name="FirefighterID" />
           </Key>
           <Property Name="FirefighterID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Rank" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ShiftID" Type="Int32" />
-          <Property Name="ShiftStartDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Incidents" Relationship="Self.FK_Firefighter_Incident" FromRole="Firefighters" ToRole="Incidents" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FiretruckID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Firetrucks" Relationship="Self.FK__Firefight__Firef__47DBAE45" FromRole="Firefighters" ToRole="Firetrucks" />
         </EntityType>
         <EntityType Name="Firetrucks">
           <Key>
             <PropertyRef Name="FiretruckID" />
           </Key>
           <Property Name="FiretruckID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Incidents" Relationship="Self.FK_Firetruck_Incident" FromRole="Firetrucks" ToRole="Incidents" />
+          <Property Name="IsMondayShift" Type="Boolean" Nullable="false" />
+          <Property Name="IsTuesdayShift" Type="Boolean" Nullable="false" />
+          <Property Name="IsWednesdayShift" Type="Boolean" Nullable="false" />
+          <Property Name="IsThursdayShift" Type="Boolean" Nullable="false" />
+          <Property Name="IsFridayShift" Type="Boolean" Nullable="false" />
+          <Property Name="IsSaturdayShift" Type="Boolean" Nullable="false" />
+          <Property Name="IsSundayShift" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Firefighters" Relationship="Self.FK__Firefight__Firef__47DBAE45" FromRole="Firetrucks" ToRole="Firefighters" />
+          <NavigationProperty Name="Incidents" Relationship="Self.FK__Incidents__Firet__48CFD27E" FromRole="Firetrucks" ToRole="Incidents" />
         </EntityType>
         <EntityType Name="Incidents">
           <Key>
             <PropertyRef Name="IncidentID" />
           </Key>
           <Property Name="IncidentID" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AssignedFirefighterID" Type="Int32" />
-          <Property Name="AssignedFiretruckID" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Firefighters" Relationship="Self.FK_Firefighter_Incident" FromRole="Incidents" ToRole="Firefighters" />
-          <NavigationProperty Name="Firetrucks" Relationship="Self.FK_Firetruck_Incident" FromRole="Incidents" ToRole="Firetrucks" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Duration" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="WaterUsed" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FiretruckID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Firetrucks" Relationship="Self.FK__Incidents__Firet__48CFD27E" FromRole="Incidents" ToRole="Firetrucks" />
         </EntityType>
-        <Association Name="FK_Firefighter_Incident">
+        <Association Name="FK__Firefight__Firef__47DBAE45">
+          <End Role="Firetrucks" Type="Self.Firetrucks" Multiplicity="1" />
           <End Role="Firefighters" Type="Self.Firefighters" Multiplicity="0..1" />
-          <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Firefighters">
-              <PropertyRef Name="FirefighterID" />
+            <Principal Role="Firetrucks">
+              <PropertyRef Name="FiretruckID" />
             </Principal>
-            <Dependent Role="Incidents">
-              <PropertyRef Name="AssignedFirefighterID" />
+            <Dependent Role="Firefighters">
+              <PropertyRef Name="FirefighterID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Firetruck_Incident">
-          <End Role="Firetrucks" Type="Self.Firetrucks" Multiplicity="0..1" />
+        <Association Name="FK__Incidents__Firet__48CFD27E">
+          <End Role="Firetrucks" Type="Self.Firetrucks" Multiplicity="1" />
           <End Role="Incidents" Type="Self.Incidents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Firetrucks">
               <PropertyRef Name="FiretruckID" />
             </Principal>
             <Dependent Role="Incidents">
-              <PropertyRef Name="AssignedFiretruckID" />
+              <PropertyRef Name="FiretruckID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -141,11 +143,11 @@
           <EntitySet Name="Firefighters" EntityType="Self.Firefighters" />
           <EntitySet Name="Firetrucks" EntityType="Self.Firetrucks" />
           <EntitySet Name="Incidents" EntityType="Self.Incidents" />
-          <AssociationSet Name="FK_Firefighter_Incident" Association="Self.FK_Firefighter_Incident">
+          <AssociationSet Name="FK__Firefight__Firef__47DBAE45" Association="Self.FK__Firefight__Firef__47DBAE45">
+            <End Role="Firetrucks" EntitySet="Firetrucks" />
             <End Role="Firefighters" EntitySet="Firefighters" />
-            <End Role="Incidents" EntitySet="Incidents" />
           </AssociationSet>
-          <AssociationSet Name="FK_Firetruck_Incident" Association="Self.FK_Firetruck_Incident">
+          <AssociationSet Name="FK__Incidents__Firet__48CFD27E" Association="Self.FK__Incidents__Firet__48CFD27E">
             <End Role="Firetrucks" EntitySet="Firetrucks" />
             <End Role="Incidents" EntitySet="Incidents" />
           </AssociationSet>
@@ -160,11 +162,9 @@
             <EntityTypeMapping TypeName="FirefighterDBModel.Firefighters">
               <MappingFragment StoreEntitySet="Firefighters">
                 <ScalarProperty Name="FirefighterID" ColumnName="FirefighterID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Rank" ColumnName="Rank" />
-                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
-                <ScalarProperty Name="ShiftStartDate" ColumnName="ShiftStartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FiretruckID" ColumnName="FiretruckID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -172,8 +172,13 @@
             <EntityTypeMapping TypeName="FirefighterDBModel.Firetrucks">
               <MappingFragment StoreEntitySet="Firetrucks">
                 <ScalarProperty Name="FiretruckID" ColumnName="FiretruckID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="IsMondayShift" ColumnName="IsMondayShift" />
+                <ScalarProperty Name="IsTuesdayShift" ColumnName="IsTuesdayShift" />
+                <ScalarProperty Name="IsWednesdayShift" ColumnName="IsWednesdayShift" />
+                <ScalarProperty Name="IsThursdayShift" ColumnName="IsThursdayShift" />
+                <ScalarProperty Name="IsFridayShift" ColumnName="IsFridayShift" />
+                <ScalarProperty Name="IsSaturdayShift" ColumnName="IsSaturdayShift" />
+                <ScalarProperty Name="IsSundayShift" ColumnName="IsSundayShift" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -181,12 +186,10 @@
             <EntityTypeMapping TypeName="FirefighterDBModel.Incidents">
               <MappingFragment StoreEntitySet="Incidents">
                 <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="AssignedFirefighterID" ColumnName="AssignedFirefighterID" />
-                <ScalarProperty Name="AssignedFiretruckID" ColumnName="AssignedFiretruckID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="WaterUsed" ColumnName="WaterUsed" />
+                <ScalarProperty Name="FiretruckID" ColumnName="FiretruckID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

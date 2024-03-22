@@ -15,14 +15,11 @@ namespace FirefighterProject.Model
     public partial class Incidents
     {
         public int IncidentID { get; set; }
-        public string Address { get; set; }
-        public string Type { get; set; }
-        public Nullable<int> AssignedFirefighterID { get; set; }
-        public Nullable<int> AssignedFiretruckID { get; set; }
-        public string Description { get; set; }
-        public string Status { get; set; }
+        public System.DateTime Date { get; set; }
+        public System.TimeSpan Duration { get; set; }
+        public decimal WaterUsed { get; set; }
+        public int FiretruckID { get; set; }
     
-        public virtual Firefighters Firefighters { get; set; }
         public virtual Firetrucks Firetrucks { get; set; }
     }
 }
