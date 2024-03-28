@@ -76,6 +76,7 @@
             this.btnRegister.TabIndex = 18;
             this.btnRegister.Text = "REGISTER";
             this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // lblPassReg
             // 
