@@ -18,6 +18,23 @@ namespace FirefighterProject.View
         public RegisterView()
         {
             InitializeComponent();
+            txtBoxPassReg.UseSystemPasswordChar = true;
+            txtBoxConfirmReg.UseSystemPasswordChar = true;
+            txtBoxPassReg.TextChanged += TxtBoxPassReg_TextChanged;
+            txtBoxConfirmReg.TextChanged += TxtBoxConfirmReg_TextChanged;
+        }
+
+        private void TxtBoxPassReg_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBox.PasswordChar = '*';
+        }
+
+        private void TxtBoxConfirmReg_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBox.PasswordChar = '*';
+
         }
 
         private void lblCreate_Click(object sender, EventArgs e)
