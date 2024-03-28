@@ -16,7 +16,7 @@ namespace FirefighterProject.Controller
                 // Проверка дали потребителското име вече съществува
                 if (db.Firefighters.Any(u => u.Username == username))
                 {
-                    return false; // Връщаме false, ако потребителското име вече е заето
+                    return false; 
                 }
 
                 // Създаваме нов запис за пожарникар в базата данни
@@ -24,8 +24,6 @@ namespace FirefighterProject.Controller
                 {
                     Username = username,
                     Password = password,
-                    // Можеш да направиш този ред, но виж дали е вярно за твоята логика
-                    // FiretruckID = firetruckId
                 };
 
                 db.Firefighters.Add(firefighter);

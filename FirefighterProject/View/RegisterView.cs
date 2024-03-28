@@ -58,7 +58,6 @@ namespace FirefighterProject.View
             {
                 MessageBox.Show($"An error occurred during registration: {ex.Message}");
 
-                // Покажи подробности за вътрешната грешка, ако има такава
                 if (ex.InnerException != null)
                 {
                     MessageBox.Show($"Inner exception details: {ex.InnerException.Message}");
