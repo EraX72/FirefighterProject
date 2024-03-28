@@ -17,7 +17,16 @@ namespace FirefighterProject.View
         public LoginView()
         {
             InitializeComponent();
+            txtBoxPassLog.UseSystemPasswordChar = true;
+            txtBoxPassLog.TextChanged += TxtBoxPassLog_TextChanged;
         }
+
+        private void TxtBoxPassLog_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBox.PasswordChar = '*';
+        }
+       
 
         private void LoginView_Load(object sender, EventArgs e)
         {
