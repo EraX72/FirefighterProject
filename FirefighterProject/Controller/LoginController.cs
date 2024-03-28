@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FirefighterProject.Data;
+using FirefighterProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,23 +10,22 @@ namespace FirefighterProject.Controller
 {
     internal class LoginController
     {
-        /* public bool IsLogin(string username, string password)
+         public bool IsLogin(string username, string password)
          {
-             //ToDo!!!!!!!!!!!
 
-             *//*using (DogsDBEntities db = new DogsDBEntities())
+             using (FirefighterDBEntities db = new FirefighterDBEntities())
              {
-                 var validAccount = db.User.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
+                 var validAccount = db.Firefighters.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
                  if (validAccount != null)
                  {
-                     GlobalData.Id = validAccount.Id;
+                     GlobalData.Id = validAccount.FirefighterID;
                      return true;
                  }
                  else
                  {
                      return false;
                  }
-             }*//*
-         }*/
+             }
+         }
     }
 }
