@@ -24,6 +24,8 @@ namespace FirefighterProject.Controller
                 {
                     Username = username,
                     Password = password,
+                    FirefighterID = 1, 
+                    FiretruckID = 1,
                 };
 
                 db.Firefighters.Add(firefighter);
