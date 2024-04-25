@@ -67,7 +67,7 @@
             this.btnDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDash.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDash.ForeColor = System.Drawing.Color.White;
-            this.btnDash.Location = new System.Drawing.Point(75, 239);
+            this.btnDash.Location = new System.Drawing.Point(72, 239);
             this.btnDash.Name = "btnDash";
             this.btnDash.Size = new System.Drawing.Size(215, 41);
             this.btnDash.TabIndex = 2;
