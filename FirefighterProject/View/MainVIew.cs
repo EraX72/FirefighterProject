@@ -16,5 +16,7 @@ namespace FirefighterProject.View
         {
             InitializeComponent();
         }
+
+        
     }
 }
