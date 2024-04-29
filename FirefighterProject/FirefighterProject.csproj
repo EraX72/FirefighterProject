@@ -311,12 +311,6 @@
     </Content>
     <None Include="Resources\finalFireman1.png" />
     <None Include="Resources\finalFireman.png" />
-    <None Include="Resources\fireman4.0.jpeg" />
-    <None Include="Resources\firemanLogo3.0.jpg" />
-    <None Include="Resources\firemanLogo2.0.jpg" />
-    <None Include="Resources\firemanLogo1.png" />
-    <None Include="Resources\firemanLogo.png" />
-    <None Include="Resources\fireman.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\firefight.jpg" />
