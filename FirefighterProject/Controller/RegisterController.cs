@@ -19,14 +19,21 @@ namespace FirefighterProject.Controller
                     return false; 
                 }
 
-                // Създаваме нов запис за пожарникар в базата данни
                 var firefighter = new Firefighters()
                 {
                     Username = username,
                     Password = password,
-                    FirefighterID = 1, 
+                    FirefighterID = 1,
                     FiretruckID = 1,
+                    Firetrucks = new Firetrucks() { }
                 };
+
+                var existingFireFighters = db.Firefighters.ToList().LastOrDefault();
+
+                if (existingFireFighters != null)
+                {
+                    firefighter.FirefighterID = existingFireFighters.FirefighterID + 1;
+                }
 
                 db.Firefighters.Add(firefighter);
                 db.SaveChanges();
