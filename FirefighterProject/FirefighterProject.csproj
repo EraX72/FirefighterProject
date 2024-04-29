@@ -309,20 +309,9 @@
       <DependentUpon>FirefighterModel.edmx</DependentUpon>
       <LastGenOutput>FirefighterModel.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\finalFireman1.png" />
-    <None Include="Resources\finalFireman.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\firefight.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\transparent.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\firefighterPh.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\firefighterPhFlip.png" />
+    <None Include="Resources\ffFlip1.png" />
+    <None Include="Resources\ff1.png" />
+    <None Include="Resources\fmLogo1.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -339,6 +328,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -38,7 +38,9 @@
             this.lblRegister = new System.Windows.Forms.Label();
             this.lblConfirmReg = new System.Windows.Forms.Label();
             this.txtBoxConfirmReg = new System.Windows.Forms.TextBox();
+            this.pbRegister = new System.Windows.Forms.PictureBox();
             this.pboxReg = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRegister)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxReg)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,16 +155,22 @@
             this.txtBoxConfirmReg.Size = new System.Drawing.Size(274, 38);
             this.txtBoxConfirmReg.TabIndex = 21;
             // 
+            // pbRegister
+            // 
+            this.pbRegister.Image = global::FirefighterProject.Properties.Resources.ffFlip;
+            this.pbRegister.Location = new System.Drawing.Point(403, -1);
+            this.pbRegister.Name = "pbRegister";
+            this.pbRegister.Size = new System.Drawing.Size(397, 452);
+            this.pbRegister.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbRegister.TabIndex = 23;
+            this.pbRegister.TabStop = false;
+            // 
             // pboxReg
             // 
-            this.pboxReg.BackgroundImage = global::FirefighterProject.Properties.Resources.firefight;
-            this.pboxReg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pboxReg.Image = global::FirefighterProject.Properties.Resources.firefighterPhFlip;
-            this.pboxReg.Location = new System.Drawing.Point(405, -7);
+            this.pboxReg.Location = new System.Drawing.Point(0, 0);
             this.pboxReg.Name = "pboxReg";
-            this.pboxReg.Size = new System.Drawing.Size(395, 463);
-            this.pboxReg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pboxReg.TabIndex = 17;
+            this.pboxReg.Size = new System.Drawing.Size(100, 50);
+            this.pboxReg.TabIndex = 0;
             this.pboxReg.TabStop = false;
             // 
             // RegisterView
@@ -170,6 +178,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pbRegister);
             this.Controls.Add(this.lblBack);
             this.Controls.Add(this.lblAccountReg);
             this.Controls.Add(this.lblConfirmReg);
@@ -180,10 +189,10 @@
             this.Controls.Add(this.txtBoxPassReg);
             this.Controls.Add(this.txtBoxUserReg);
             this.Controls.Add(this.lblRegister);
-            this.Controls.Add(this.pboxReg);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RegisterView";
             this.Text = "RegisterView";
+            ((System.ComponentModel.ISupportInitialize)(this.pbRegister)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxReg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -203,5 +212,6 @@
         private System.Windows.Forms.PictureBox pboxReg;
         private System.Windows.Forms.Label lblConfirmReg;
         private System.Windows.Forms.TextBox txtBoxConfirmReg;
+        private System.Windows.Forms.PictureBox pbRegister;
     }
 }

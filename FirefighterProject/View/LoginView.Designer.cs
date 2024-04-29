@@ -36,8 +36,8 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblAccountLog = new System.Windows.Forms.Label();
             this.lblCreate = new System.Windows.Forms.Label();
-            this.pboxLog = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxLog)).BeginInit();
+            this.pbLogin = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).BeginInit();
             this.SuspendLayout();
             // 
             // lblLogin
@@ -130,23 +130,22 @@
             this.lblCreate.Text = "Create Account";
             this.lblCreate.Click += new System.EventHandler(this.lblCreate_Click);
             // 
-            // pboxLog
+            // pbLogin
             // 
-            this.pboxLog.BackgroundImage = global::FirefighterProject.Properties.Resources.firefight;
-            this.pboxLog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pboxLog.Image = global::FirefighterProject.Properties.Resources.firefighterPh;
-            this.pboxLog.Location = new System.Drawing.Point(0, 0);
-            this.pboxLog.Name = "pboxLog";
-            this.pboxLog.Size = new System.Drawing.Size(395, 463);
-            this.pboxLog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pboxLog.TabIndex = 7;
-            this.pboxLog.TabStop = false;
+            this.pbLogin.Image = global::FirefighterProject.Properties.Resources.ff;
+            this.pbLogin.Location = new System.Drawing.Point(-2, -2);
+            this.pbLogin.Name = "pbLogin";
+            this.pbLogin.Size = new System.Drawing.Size(397, 452);
+            this.pbLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogin.TabIndex = 11;
+            this.pbLogin.TabStop = false;
             // 
             // LoginView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pbLogin);
             this.Controls.Add(this.lblCreate);
             this.Controls.Add(this.lblAccountLog);
             this.Controls.Add(this.btnLogin);
@@ -155,12 +154,11 @@
             this.Controls.Add(this.txtBoxPassLog);
             this.Controls.Add(this.txtBoxUserLog);
             this.Controls.Add(this.lblLogin);
-            this.Controls.Add(this.pboxLog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginView";
             this.Text = "LoginView";
             this.Load += new System.EventHandler(this.LoginView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pboxLog)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,9 +170,9 @@
         private System.Windows.Forms.TextBox txtBoxPassLog;
         private System.Windows.Forms.Label lblUserLog;
         private System.Windows.Forms.Label lblPassLog;
-        private System.Windows.Forms.PictureBox pboxLog;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblAccountLog;
         private System.Windows.Forms.Label lblCreate;
+        private System.Windows.Forms.PictureBox pbLogin;
     }
 }

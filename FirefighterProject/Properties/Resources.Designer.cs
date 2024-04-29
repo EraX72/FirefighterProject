@@ -63,9 +63,9 @@ namespace FirefighterProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap finalFireman {
+        internal static System.Drawing.Bitmap ff {
             get {
-                object obj = ResourceManager.GetObject("finalFireman", resourceCulture);
+                object obj = ResourceManager.GetObject("ff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace FirefighterProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap finalFireman1 {
+        internal static System.Drawing.Bitmap ffFlip {
             get {
-                object obj = ResourceManager.GetObject("finalFireman1", resourceCulture);
+                object obj = ResourceManager.GetObject("ffFlip", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,99 +83,9 @@ namespace FirefighterProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap firefight {
+        internal static System.Drawing.Bitmap fmLogo {
             get {
-                object obj = ResourceManager.GetObject("firefight", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap firefighterPh {
-            get {
-                object obj = ResourceManager.GetObject("firefighterPh", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap firefighterPhFlip {
-            get {
-                object obj = ResourceManager.GetObject("firefighterPhFlip", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap fireman {
-            get {
-                object obj = ResourceManager.GetObject("fireman", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap fireman4_0 {
-            get {
-                object obj = ResourceManager.GetObject("fireman4.0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap firemanLogo {
-            get {
-                object obj = ResourceManager.GetObject("firemanLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap firemanLogo1 {
-            get {
-                object obj = ResourceManager.GetObject("firemanLogo1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap firemanLogo2_0 {
-            get {
-                object obj = ResourceManager.GetObject("firemanLogo2.0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap firemanLogo3_0 {
-            get {
-                object obj = ResourceManager.GetObject("firemanLogo3.0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap transparent {
-            get {
-                object obj = ResourceManager.GetObject("transparent", resourceCulture);
+                object obj = ResourceManager.GetObject("fmLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

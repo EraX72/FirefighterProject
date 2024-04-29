@@ -118,40 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="firefighterPh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\firefighterPh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ff1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="firemanLogo3.0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\firemanLogo3.0.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fmLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fmLogo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="firefight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\firefight.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fireman" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fireman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="firemanLogo2.0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\firemanLogo2.0.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="finalFireman" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\finalFireman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\transparent.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="firemanLogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\firemanLogo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="firemanLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\firemanLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fireman4.0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fireman4.0.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="firefighterPhFlip" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\firefighterPhFlip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="finalFireman1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\finalFireman1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ffFlip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ffFlip1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
