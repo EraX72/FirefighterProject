@@ -9,5 +9,6 @@ namespace FirefighterProject.Data
     class GlobalData
     {
         public static int Id = 0;
+
     }
 }

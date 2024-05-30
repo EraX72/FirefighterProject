@@ -1,9 +1,6 @@
-﻿using FirefighterProject.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using FirefighterProject.Data;
+using FirefighterProject.Model;
 
 namespace FirefighterProject.Controller
 {
@@ -11,34 +8,27 @@ namespace FirefighterProject.Controller
     {
         public bool Register(string username, string password)
         {
-            using (FirefighterDBEntities db = new FirefighterDBEntities())
+            using (var db = new FirefighterDbContext())
             {
-                // Проверка дали потребителското име вече съществува
                 if (db.Firefighters.Any(u => u.Username == username))
                 {
-                    return false; 
+                    return false;
                 }
 
-                var firefighter = new Firefighters()
+                var firefighter = new Firefighters
                 {
                     Username = username,
                     Password = password,
-                    FirefighterID = 1,
                     FiretruckID = 1,
-                    Firetrucks = new Firetrucks() { }
                 };
 
-                var existingFireFighters = db.Firefighters.ToList().LastOrDefault();
-
-                if (existingFireFighters != null)
-                {
-                    firefighter.FirefighterID = existingFireFighters.FirefighterID + 1;
-                }
+                var existingFirefighters = db.Firefighters.OrderByDescending(f => f.FirefighterID).FirstOrDefault();
+                firefighter.FirefighterID = existingFirefighters?.FirefighterID + 1 ?? 1;
 
                 db.Firefighters.Add(firefighter);
                 db.SaveChanges();
 
-                return true; // Връщаме true, ако регистрацията е успешна
+                return true;
             }
         }
     }

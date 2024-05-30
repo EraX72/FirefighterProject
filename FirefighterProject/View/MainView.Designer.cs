@@ -2,15 +2,8 @@
 {
     partial class MainView
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,13 +15,10 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.btnView = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -43,6 +33,7 @@
             // 
             this.pnlLeft.BackColor = System.Drawing.Color.White;
             this.pnlLeft.Controls.Add(this.pbLogo);
+            this.pnlLeft.Controls.Add(this.btnView);
             this.pnlLeft.Controls.Add(this.btnDelete);
             this.pnlLeft.Controls.Add(this.btnUpdate);
             this.pnlLeft.Controls.Add(this.btnAdd);
@@ -51,6 +42,19 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(358, 649);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // btnView
+            // 
+            this.btnView.BackColor = System.Drawing.Color.IndianRed;
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnView.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.ForeColor = System.Drawing.Color.White;
+            this.btnView.Location = new System.Drawing.Point(72, 560);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(215, 41);
+            this.btnView.TabIndex = 6;
+            this.btnView.Text = "VIEW";
+            this.btnView.UseVisualStyleBackColor = false;
             // 
             // btnDelete
             // 
@@ -149,6 +153,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.PictureBox pbLogo;
     }
 }

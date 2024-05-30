@@ -1,12 +1,5 @@
 ﻿using FirefighterProject.Controller;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FirefighterProject.View
@@ -34,7 +27,6 @@ namespace FirefighterProject.View
         {
             TextBox textBox = sender as TextBox;
             textBox.PasswordChar = '*';
-
         }
 
         private void lblCreate_Click(object sender, EventArgs e)
@@ -48,7 +40,7 @@ namespace FirefighterProject.View
         {
             string username = txtBoxUserReg.Text;
             string password = txtBoxPassReg.Text;
-            string confirmPassword = txtBoxConfirmReg.Text; // Поле за потвърждение на паролата
+            string confirmPassword = txtBoxConfirmReg.Text;
 
             if (password != confirmPassword)
             {
@@ -74,7 +66,6 @@ namespace FirefighterProject.View
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred during registration: {ex.Message}");
-
                 if (ex.InnerException != null)
                 {
                     MessageBox.Show($"Inner exception details: {ex.InnerException.Message}");
