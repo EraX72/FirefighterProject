@@ -15,14 +15,39 @@ namespace FirefighterProject.Controller
                     return false;
                 }
 
-                // Find the highest FiretruckID and increment it
-                var newFiretruckID = (db.Firefighters.OrderByDescending(f => f.FiretruckID).FirstOrDefault()?.FiretruckID ?? 0) + 1;
+                // Find an existing FiretruckID or create a new one if needed
+                var existingFiretruck = db.Firetrucks.FirstOrDefault();
+                int firetruckID;
+
+                if (existingFiretruck == null)
+                {
+                    // Create a new Firetruck if none exists
+                    var newFiretruck = new Firetrucks
+                    {
+                        IsMondayShift = false,
+                        IsTuesdayShift = false,
+                        IsWednesdayShift = false,
+                        IsThursdayShift = false,
+                        IsFridayShift = false,
+                        IsSaturdayShift = false,
+                        IsSundayShift = false
+                    };
+
+                    db.Firetrucks.Add(newFiretruck);
+                    db.SaveChanges();
+                    firetruckID = newFiretruck.FiretruckID;
+                }
+                else
+                {
+                    // Use the existing FiretruckID
+                    firetruckID = existingFiretruck.FiretruckID;
+                }
 
                 var firefighter = new Firefighters
                 {
                     Username = username,
                     Password = password,
-                    FiretruckID = newFiretruckID,
+                    FiretruckID = firetruckID,
                 };
 
                 var existingFirefighters = db.Firefighters.OrderByDescending(f => f.FirefighterID).FirstOrDefault();
@@ -34,6 +59,5 @@ namespace FirefighterProject.Controller
                 return true;
             }
         }
-
     }
 }
