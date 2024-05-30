@@ -12,7 +12,7 @@ namespace FirefighterProject.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\fiveb\source\repos\EraX72\FirefighterProject\FirefighterProject\FirefighterDB.mdf;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\qncho\Source\Repos\EraX72\FirefighterProject\FirefighterProject\FirefighterDB.mdf;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

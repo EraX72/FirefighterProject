@@ -33,6 +33,7 @@ namespace FirefighterProject.Controller
                 var existingFirefighters = db.Firefighters.OrderByDescending(f => f.FirefighterID).FirstOrDefault();
                 firefighter.FirefighterID = existingFirefighters?.FirefighterID + 1 ?? 1;
 
+
                 db.Firefighters.Add(firefighter);
                 db.SaveChanges();
 
