@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using FirefighterProject.Model;
-using Microsoft.EntityFrameworkCore;
 
 namespace FirefighterProject.Data
 {
@@ -9,6 +8,7 @@ namespace FirefighterProject.Data
         public DbSet<Firefighters> Firefighters { get; set; }
         public DbSet<Firetrucks> Firetrucks { get; set; }
         public DbSet<Incidents> Incidents { get; set; }
+        public DbSet<IncidentParticipants> IncidentParticipants { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,7 +22,7 @@ namespace FirefighterProject.Data
                 entity.HasKey(f => f.FirefighterID);
                 entity.Property(f => f.Username).IsRequired().HasMaxLength(255);
                 entity.Property(f => f.Password).IsRequired().HasMaxLength(255);
-                entity.HasOne(f => f.Firetrucks)
+                entity.HasOne(f => f.Firetruck)
                       .WithMany(ft => ft.Firefighters)
                       .HasForeignKey(f => f.FiretruckID);
             });
@@ -48,6 +48,20 @@ namespace FirefighterProject.Data
                 entity.HasOne(i => i.Firetruck)
                       .WithMany(ft => ft.Incidents)
                       .HasForeignKey(i => i.FiretruckID);
+                entity.HasMany(i => i.IncidentParticipants)
+                      .WithOne(ip => ip.Incident)
+                      .HasForeignKey(ip => ip.IncidentID);
+            });
+
+            modelBuilder.Entity<IncidentParticipants>(entity =>
+            {
+                entity.HasKey(ip => new { ip.IncidentID, ip.FirefighterID });
+                entity.HasOne(ip => ip.Incident)
+                      .WithMany(i => i.IncidentParticipants)
+                      .HasForeignKey(ip => ip.IncidentID);
+                entity.HasOne(ip => ip.Firefighter)
+                      .WithMany(f => f.IncidentParticipants)
+                      .HasForeignKey(ip => ip.FirefighterID);
             });
         }
     }

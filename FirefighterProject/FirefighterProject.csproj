@@ -270,6 +270,7 @@
     <Compile Include="Model\Firetrucks.cs">
       <DependentUpon>FirefighterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\IncidentParticipants.cs" />
     <Compile Include="Model\Incidents.cs">
       <DependentUpon>FirefighterModel.tt</DependentUpon>
     </Compile>

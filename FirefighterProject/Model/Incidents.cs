@@ -14,6 +14,7 @@ namespace FirefighterProject.Model
         public decimal WaterUsed { get; set; }
         public int FiretruckID { get; set; }
 
-        public Firetrucks Firetruck { get; set; }  // Navigation property
+        public Firetrucks Firetruck { get; set; }
+        public ICollection<IncidentParticipants> IncidentParticipants { get; set; }
     }
 }

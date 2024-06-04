@@ -17,7 +17,7 @@ namespace FirefighterProject.Model
         public bool IsSaturdayShift { get; set; }
         public bool IsSundayShift { get; set; }
 
-        public ICollection<Firefighters> Firefighters { get; set; }  // Navigation property
-        public ICollection<Incidents> Incidents { get; set; }  // Navigation property
+        public ICollection<Firefighters> Firefighters { get; set; }
+        public ICollection<Incidents> Incidents { get; set; }
     }
 }
