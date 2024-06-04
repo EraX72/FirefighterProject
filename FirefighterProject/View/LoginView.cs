@@ -11,7 +11,7 @@ namespace FirefighterProject.View
         public LoginView()
         {
             InitializeComponent();
-            txtBoxPassLog.UseSystemPasswordChar = true;
+            txtBoxPassLog.UseSystemPasswordChar = false;
             txtBoxPassLog.TextChanged += TxtBoxPassLog_TextChanged;
         }
 
@@ -45,6 +45,18 @@ namespace FirefighterProject.View
             RegisterView m = new RegisterView();
             m.Show();
             this.Hide();
+        }
+
+        private void chBoxLogin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chBoxLogin.Checked == true)
+            {
+                txtBoxPassLog.UseSystemPasswordChar = true;
+            }
+            else
+            {
+                txtBoxPassLog.UseSystemPasswordChar = false;
+            }
         }
     }
 }

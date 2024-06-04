@@ -11,8 +11,8 @@ namespace FirefighterProject.View
         public RegisterView()
         {
             InitializeComponent();
-            txtBoxPassReg.UseSystemPasswordChar = true;
-            txtBoxConfirmReg.UseSystemPasswordChar = true;
+            txtBoxPassReg.UseSystemPasswordChar = false;
+            txtBoxConfirmReg.UseSystemPasswordChar = false;
             txtBoxPassReg.TextChanged += TxtBoxPassReg_TextChanged;
             txtBoxConfirmReg.TextChanged += TxtBoxConfirmReg_TextChanged;
         }
@@ -70,6 +70,20 @@ namespace FirefighterProject.View
                 {
                     MessageBox.Show($"Inner exception details: {ex.InnerException.Message}");
                 }
+            }
+        }
+
+        private void chBoxRegister_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chBoxRegister.Checked == true)
+            {
+                txtBoxConfirmReg.UseSystemPasswordChar = true;
+                txtBoxPassReg.UseSystemPasswordChar = true;
+            }
+            else
+            {
+                txtBoxPassReg.UseSystemPasswordChar = false;
+                txtBoxConfirmReg.UseSystemPasswordChar = false;
             }
         }
     }

@@ -40,6 +40,7 @@
             this.txtBoxConfirmReg = new System.Windows.Forms.TextBox();
             this.pbRegister = new System.Windows.Forms.PictureBox();
             this.pboxReg = new System.Windows.Forms.PictureBox();
+            this.chBoxRegister = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbRegister)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxReg)).BeginInit();
             this.SuspendLayout();
@@ -111,6 +112,7 @@
             this.txtBoxPassReg.Name = "txtBoxPassReg";
             this.txtBoxPassReg.Size = new System.Drawing.Size(274, 38);
             this.txtBoxPassReg.TabIndex = 14;
+            this.txtBoxPassReg.UseSystemPasswordChar = true;
             // 
             // txtBoxUserReg
             // 
@@ -154,6 +156,7 @@
             this.txtBoxConfirmReg.Name = "txtBoxConfirmReg";
             this.txtBoxConfirmReg.Size = new System.Drawing.Size(274, 38);
             this.txtBoxConfirmReg.TabIndex = 21;
+            this.txtBoxConfirmReg.UseSystemPasswordChar = true;
             // 
             // pbRegister
             // 
@@ -173,11 +176,23 @@
             this.pboxReg.TabIndex = 0;
             this.pboxReg.TabStop = false;
             // 
+            // chBoxRegister
+            // 
+            this.chBoxRegister.AutoSize = true;
+            this.chBoxRegister.Location = new System.Drawing.Point(233, 288);
+            this.chBoxRegister.Name = "chBoxRegister";
+            this.chBoxRegister.Size = new System.Drawing.Size(99, 17);
+            this.chBoxRegister.TabIndex = 24;
+            this.chBoxRegister.Text = "show password";
+            this.chBoxRegister.UseVisualStyleBackColor = true;
+            this.chBoxRegister.CheckedChanged += new System.EventHandler(this.chBoxRegister_CheckedChanged);
+            // 
             // RegisterView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chBoxRegister);
             this.Controls.Add(this.pbRegister);
             this.Controls.Add(this.lblBack);
             this.Controls.Add(this.lblAccountReg);
@@ -213,5 +228,6 @@
         private System.Windows.Forms.Label lblConfirmReg;
         private System.Windows.Forms.TextBox txtBoxConfirmReg;
         private System.Windows.Forms.PictureBox pbRegister;
+        private System.Windows.Forms.CheckBox chBoxRegister;
     }
 }

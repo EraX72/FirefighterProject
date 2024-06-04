@@ -37,6 +37,7 @@
             this.lblAccountLog = new System.Windows.Forms.Label();
             this.lblCreate = new System.Windows.Forms.Label();
             this.pbLogin = new System.Windows.Forms.PictureBox();
+            this.chBoxLogin = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@
             this.txtBoxPassLog.Name = "txtBoxPassLog";
             this.txtBoxPassLog.Size = new System.Drawing.Size(274, 38);
             this.txtBoxPassLog.TabIndex = 4;
+            this.txtBoxPassLog.UseSystemPasswordChar = true;
             // 
             // lblUserLog
             // 
@@ -140,11 +142,23 @@
             this.pbLogin.TabIndex = 11;
             this.pbLogin.TabStop = false;
             // 
+            // chBoxLogin
+            // 
+            this.chBoxLogin.AutoSize = true;
+            this.chBoxLogin.Location = new System.Drawing.Point(622, 254);
+            this.chBoxLogin.Name = "chBoxLogin";
+            this.chBoxLogin.Size = new System.Drawing.Size(99, 17);
+            this.chBoxLogin.TabIndex = 25;
+            this.chBoxLogin.Text = "show password";
+            this.chBoxLogin.UseVisualStyleBackColor = true;
+            this.chBoxLogin.CheckedChanged += new System.EventHandler(this.chBoxLogin_CheckedChanged);
+            // 
             // LoginView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chBoxLogin);
             this.Controls.Add(this.pbLogin);
             this.Controls.Add(this.lblCreate);
             this.Controls.Add(this.lblAccountLog);
@@ -174,5 +188,6 @@
         private System.Windows.Forms.Label lblAccountLog;
         private System.Windows.Forms.Label lblCreate;
         private System.Windows.Forms.PictureBox pbLogin;
+        private System.Windows.Forms.CheckBox chBoxLogin;
     }
 }

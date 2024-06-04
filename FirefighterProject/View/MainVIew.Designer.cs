@@ -47,7 +47,7 @@
             // 
             // pbLogo
             // 
-            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pbLogo.Location = new System.Drawing.Point(72, 60);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(215, 162);
