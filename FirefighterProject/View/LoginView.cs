@@ -58,5 +58,12 @@ namespace FirefighterProject.View
                 txtBoxPassLog.UseSystemPasswordChar = false;
             }
         }
+
+        private void btnEgg_Click(object sender, EventArgs e)
+        {
+            EasterEgg easterView = new EasterEgg();
+            easterView.Show();
+            this.Hide();
+        }
     }
 }

@@ -36,8 +36,9 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblAccountLog = new System.Windows.Forms.Label();
             this.lblCreate = new System.Windows.Forms.Label();
-            this.pbLogin = new System.Windows.Forms.PictureBox();
             this.chBoxLogin = new System.Windows.Forms.CheckBox();
+            this.pbLogin = new System.Windows.Forms.PictureBox();
+            this.btnEgg = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,16 +133,6 @@
             this.lblCreate.Text = "Create Account";
             this.lblCreate.Click += new System.EventHandler(this.lblCreate_Click);
             // 
-            // pbLogin
-            // 
-            this.pbLogin.Image = global::FirefighterProject.Properties.Resources.ff;
-            this.pbLogin.Location = new System.Drawing.Point(-2, -2);
-            this.pbLogin.Name = "pbLogin";
-            this.pbLogin.Size = new System.Drawing.Size(397, 452);
-            this.pbLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogin.TabIndex = 11;
-            this.pbLogin.TabStop = false;
-            // 
             // chBoxLogin
             // 
             this.chBoxLogin.AutoSize = true;
@@ -153,11 +144,32 @@
             this.chBoxLogin.UseVisualStyleBackColor = true;
             this.chBoxLogin.CheckedChanged += new System.EventHandler(this.chBoxLogin_CheckedChanged);
             // 
+            // pbLogin
+            // 
+            this.pbLogin.Image = global::FirefighterProject.Properties.Resources.ff;
+            this.pbLogin.Location = new System.Drawing.Point(-2, -2);
+            this.pbLogin.Name = "pbLogin";
+            this.pbLogin.Size = new System.Drawing.Size(397, 452);
+            this.pbLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogin.TabIndex = 11;
+            this.pbLogin.TabStop = false;
+            // 
+            // btnEgg
+            // 
+            this.btnEgg.Location = new System.Drawing.Point(765, 416);
+            this.btnEgg.Name = "btnEgg";
+            this.btnEgg.Size = new System.Drawing.Size(23, 22);
+            this.btnEgg.TabIndex = 26;
+            this.btnEgg.Text = "?????????";
+            this.btnEgg.UseVisualStyleBackColor = true;
+            this.btnEgg.Click += new System.EventHandler(this.btnEgg_Click);
+            // 
             // LoginView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEgg);
             this.Controls.Add(this.chBoxLogin);
             this.Controls.Add(this.pbLogin);
             this.Controls.Add(this.lblCreate);
@@ -189,5 +201,6 @@
         private System.Windows.Forms.Label lblCreate;
         private System.Windows.Forms.PictureBox pbLogin;
         private System.Windows.Forms.CheckBox chBoxLogin;
+        private System.Windows.Forms.Button btnEgg;
     }
 }

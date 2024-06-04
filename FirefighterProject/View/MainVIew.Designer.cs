@@ -18,7 +18,6 @@
         private void InitializeComponent()
         {
             this.pnlLeft = new System.Windows.Forms.Panel();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.btnView = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -26,9 +25,10 @@
             this.btnDash = new System.Windows.Forms.Button();
             this.pblUpper = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.pnlLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlLeft
@@ -44,16 +44,6 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(358, 649);
             this.pnlLeft.TabIndex = 0;
-            // 
-            // pbLogo
-            // 
-            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pbLogo.Location = new System.Drawing.Point(72, 60);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(215, 162);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogo.TabIndex = 12;
-            this.pbLogo.TabStop = false;
             // 
             // btnView
             // 
@@ -143,6 +133,16 @@
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // pbLogo
+            // 
+            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbLogo.Location = new System.Drawing.Point(72, 60);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(215, 162);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogo.TabIndex = 12;
+            this.pbLogo.TabStop = false;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,8 +155,8 @@
             this.Name = "MainView";
             this.Text = "MainView";
             this.pnlLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
