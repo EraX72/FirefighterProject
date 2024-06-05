@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FirefighterProject.Data;
 using FirefighterProject.Model;
@@ -170,6 +171,24 @@ namespace FirefighterProject.Controller
                 db.SaveChanges();
 
                 return true;
+            }
+        }
+
+        public List<Firefighters> GetFirefightersByIncidentCount()
+        {
+            using (var db = new FirefighterDbContext())
+            {
+                var firefighters = db.Firefighters
+                    .Select(f => new
+                    {
+                        Firefighter = f,
+                        IncidentCount = db.Incidents.Count(i => i.Firetruck.Firefighters.Any(ff => ff.FirefighterID == f.FirefighterID))
+                    })
+                    .OrderByDescending(f => f.IncidentCount)
+                    .Select(f => f.Firefighter)
+                    .ToList();
+
+                return firefighters;
             }
         }
     }

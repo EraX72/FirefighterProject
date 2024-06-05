@@ -28,8 +28,14 @@
             this.pblUpper = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewIncidents = new System.Windows.Forms.DataGridView();
+            this.btnSortFirefighters = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            this.pblUpper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncidents)).BeginInit();
             this.SuspendLayout();
@@ -37,6 +43,10 @@
             // pnlLeft
             // 
             this.pnlLeft.BackColor = System.Drawing.Color.White;
+            this.pnlLeft.Controls.Add(this.panel4);
+            this.pnlLeft.Controls.Add(this.panel3);
+            this.pnlLeft.Controls.Add(this.panel2);
+            this.pnlLeft.Controls.Add(this.btnSortFirefighters);
             this.pnlLeft.Controls.Add(this.pbLogo);
             this.pnlLeft.Controls.Add(this.btnDelete);
             this.pnlLeft.Controls.Add(this.btnUpdate);
@@ -108,7 +118,7 @@
             this.btnDash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDash.ForeColor = System.Drawing.Color.White;
-            this.btnDash.Location = new System.Drawing.Point(72, 376);
+            this.btnDash.Location = new System.Drawing.Point(72, 232);
             this.btnDash.Name = "btnDash";
             this.btnDash.Size = new System.Drawing.Size(215, 36);
             this.btnDash.TabIndex = 2;
@@ -122,7 +132,7 @@
             this.btnAddIncident.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddIncident.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddIncident.ForeColor = System.Drawing.Color.White;
-            this.btnAddIncident.Location = new System.Drawing.Point(72, 288);
+            this.btnAddIncident.Location = new System.Drawing.Point(72, 305);
             this.btnAddIncident.Name = "btnAddIncident";
             this.btnAddIncident.Size = new System.Drawing.Size(215, 41);
             this.btnAddIncident.TabIndex = 7;
@@ -136,7 +146,7 @@
             this.btnViewIncidentDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewIncidentDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewIncidentDetails.ForeColor = System.Drawing.Color.White;
-            this.btnViewIncidentDetails.Location = new System.Drawing.Point(72, 335);
+            this.btnViewIncidentDetails.Location = new System.Drawing.Point(72, 352);
             this.btnViewIncidentDetails.Name = "btnViewIncidentDetails";
             this.btnViewIncidentDetails.Size = new System.Drawing.Size(215, 35);
             this.btnViewIncidentDetails.TabIndex = 8;
@@ -147,6 +157,7 @@
             // pblUpper
             // 
             this.pblUpper.BackColor = System.Drawing.Color.RosyBrown;
+            this.pblUpper.Controls.Add(this.panel1);
             this.pblUpper.Dock = System.Windows.Forms.DockStyle.Top;
             this.pblUpper.Location = new System.Drawing.Point(0, 0);
             this.pblUpper.Name = "pblUpper";
@@ -171,6 +182,53 @@
             this.dataGridViewIncidents.TabIndex = 9;
             this.dataGridViewIncidents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIncidents_CellContentClick);
             // 
+            // btnSortFirefighters
+            // 
+            this.btnSortFirefighters.BackColor = System.Drawing.Color.IndianRed;
+            this.btnSortFirefighters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSortFirefighters.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSortFirefighters.ForeColor = System.Drawing.Color.White;
+            this.btnSortFirefighters.Location = new System.Drawing.Point(72, 555);
+            this.btnSortFirefighters.Name = "btnSortFirefighters";
+            this.btnSortFirefighters.Size = new System.Drawing.Size(215, 41);
+            this.btnSortFirefighters.TabIndex = 13;
+            this.btnSortFirefighters.Text = "SORT";
+            this.btnSortFirefighters.UseVisualStyleBackColor = false;
+            this.btnSortFirefighters.Click += new System.EventHandler(this.btnSortFirefighters_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.RosyBrown;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1307, 40);
+            this.panel1.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Location = new System.Drawing.Point(27, 274);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(316, 10);
+            this.panel2.TabIndex = 10;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightGray;
+            this.panel3.Location = new System.Drawing.Point(27, 393);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(316, 10);
+            this.panel3.TabIndex = 11;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightGray;
+            this.panel4.Location = new System.Drawing.Point(27, 534);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(316, 10);
+            this.panel4.TabIndex = 11;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,6 +243,7 @@
             this.Text = "MainView";
             this.pnlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            this.pblUpper.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIncidents)).EndInit();
             this.ResumeLayout(false);
@@ -204,5 +263,10 @@
         private System.Windows.Forms.Button btnAddIncident;
         private System.Windows.Forms.Button btnViewIncidentDetails;
         private System.Windows.Forms.DataGridView dataGridViewIncidents;
+        private System.Windows.Forms.Button btnSortFirefighters;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }

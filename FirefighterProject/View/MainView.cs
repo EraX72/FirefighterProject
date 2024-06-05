@@ -18,6 +18,7 @@ namespace FirefighterProject.View
             LoadIncidentDataGrid();
         }
 
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Add logic if needed
@@ -192,6 +193,13 @@ namespace FirefighterProject.View
         {
             string result = Prompt.ShowDialog("Title", "Default Text");
             MessageBox.Show("Dialog Result: " + result);
+        }
+
+
+        private void btnSortFirefighters_Click(object sender, EventArgs e)
+        {
+            var sortedFirefighters = _controller.GetFirefightersByIncidentCount();
+            dataGridView1.DataSource = sortedFirefighters;
         }
     }
 }
