@@ -13,7 +13,7 @@ namespace FirefighterProject.Controller
             // Implement dashboard loading logic
         }
 
-        public bool AddFirefighter(string username, string password)
+        public bool AddFirefighter(string username, string password, int firetruckID)
         {
             using (var db = new FirefighterDbContext())
             {
@@ -22,11 +22,20 @@ namespace FirefighterProject.Controller
                     return false;
                 }
 
+                // Check if the provided FiretruckID exists
+                var validFiretruck = db.Firetrucks.FirstOrDefault(ft => ft.FiretruckID == firetruckID);
+
+                if (validFiretruck == null)
+                {
+                    // If the provided FiretruckID does not exist, return false
+                    return false;
+                }
+
                 var firefighter = new Firefighters
                 {
                     Username = username,
                     Password = password,
-                    FiretruckID = 1,
+                    FiretruckID = firetruckID,
                 };
 
                 var existingFirefighters = db.Firefighters.OrderByDescending(f => f.FirefighterID).FirstOrDefault();

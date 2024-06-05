@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using FirefighterProject.Controller;
 using FirefighterProject.Data;
+using FirefighterProject.Model;
 
 namespace FirefighterProject.View
 {
@@ -16,6 +17,7 @@ namespace FirefighterProject.View
             _controller = new MainController();
             LoadDataGrid();
             LoadIncidentDataGrid();
+            EnsureFiretrucksExist();
         }
 
 
@@ -102,15 +104,38 @@ namespace FirefighterProject.View
         {
             var username = Prompt.ShowDialog("Enter Username:", "Add Firefighter");
             var password = Prompt.ShowDialog("Enter Password:", "Add Firefighter");
+            var firetruckIDInput = Prompt.ShowDialog("Enter Firetruck ID:", "Add Firefighter");
+            int firetruckID;
 
-            if (_controller.AddFirefighter(username, password))
+            // Validate the entered Firetruck ID
+            if (!int.TryParse(firetruckIDInput, out firetruckID))
+            {
+                MessageBox.Show("Invalid Firetruck ID. Please enter a valid number.");
+                return;
+            }
+
+            // Attempt to add the firefighter with the provided Firetruck ID
+            if (_controller.AddFirefighter(username, password, firetruckID))
             {
                 MessageBox.Show("Firefighter added successfully");
                 LoadDataGrid();
             }
             else
             {
-                MessageBox.Show("Username already exists");
+                MessageBox.Show("Firetruck ID does not exist. Please enter a valid Firetruck ID.");
+            }
+        }
+
+        private void EnsureFiretrucksExist()
+        {
+            using (var db = new FirefighterDbContext())
+            {
+                if (!db.Firetrucks.Any())
+                {
+                    db.Firetrucks.Add(new Firetrucks { IsMondayShift = true, IsTuesdayShift = true, IsWednesdayShift = true, IsThursdayShift = true, IsFridayShift = true, IsSaturdayShift = false, IsSundayShift = false });
+                    db.Firetrucks.Add(new Firetrucks { IsMondayShift = false, IsTuesdayShift = false, IsWednesdayShift = false, IsThursdayShift = false, IsFridayShift = false, IsSaturdayShift = true, IsSundayShift = true });
+                    db.SaveChanges();
+                }
             }
         }
 

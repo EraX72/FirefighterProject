@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using FirefighterProject.Data;
 using FirefighterProject.Model;
 
@@ -15,39 +16,36 @@ namespace FirefighterProject.Controller
                     return false;
                 }
 
-                // Find an existing FiretruckID or create a new one if needed
-                var existingFiretruck = db.Firetrucks.FirstOrDefault();
-                int firetruckID;
-
-                if (existingFiretruck == null)
+                // Get all FiretruckIDs
+                var firetruckIDs = db.Firetrucks.Select(ft => ft.FiretruckID).ToList();
+                if (firetruckIDs.Count == 0)
                 {
-                    // Create a new Firetruck if none exists
-                    var newFiretruck = new Firetrucks
-                    {
-                        IsMondayShift = false,
-                        IsTuesdayShift = false,
-                        IsWednesdayShift = false,
-                        IsThursdayShift = false,
-                        IsFridayShift = false,
-                        IsSaturdayShift = false,
-                        IsSundayShift = false
-                    };
+                    throw new Exception("No firetrucks available. Please add firetrucks first.");
+                }
 
-                    db.Firetrucks.Add(newFiretruck);
-                    db.SaveChanges();
-                    firetruckID = newFiretruck.FiretruckID;
+                // Get the last used FiretruckID from the Firefighters table
+                var lastUsedFiretruckID = db.Firefighters
+                                            .OrderByDescending(f => f.FirefighterID)
+                                            .Select(f => f.FiretruckID)
+                                            .FirstOrDefault();
+
+                // Find the next FiretruckID to use
+                int nextFiretruckID;
+                if (lastUsedFiretruckID == 0)
+                {
+                    nextFiretruckID = firetruckIDs.First();
                 }
                 else
                 {
-                    // Use the existing FiretruckID
-                    firetruckID = existingFiretruck.FiretruckID;
+                    int lastIndex = firetruckIDs.IndexOf(lastUsedFiretruckID);
+                    nextFiretruckID = firetruckIDs[(lastIndex + 1) % firetruckIDs.Count];
                 }
 
                 var firefighter = new Firefighters
                 {
                     Username = username,
                     Password = password,
-                    FiretruckID = firetruckID,
+                    FiretruckID = nextFiretruckID
                 };
 
                 var existingFirefighters = db.Firefighters.OrderByDescending(f => f.FirefighterID).FirstOrDefault();
@@ -61,3 +59,4 @@ namespace FirefighterProject.Controller
         }
     }
 }
+
