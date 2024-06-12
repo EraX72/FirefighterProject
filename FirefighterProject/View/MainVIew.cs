@@ -226,5 +226,18 @@ namespace FirefighterProject.View
             var sortedFirefighters = _controller.GetFirefightersByIncidentCount();
             dataGridView1.DataSource = sortedFirefighters;
         }
+
+        private void btnTop_Click(object sender, EventArgs e)
+        {
+            var topFirefighter = _controller.GetTopFirefighter();
+            if (topFirefighter != null)
+            {
+                MessageBox.Show($"Top Firefighter: {topFirefighter.Username}\nIncident Count: {topFirefighter.IncidentParticipants.Count}");
+            }
+            else
+            {
+                MessageBox.Show("No firefighters found.");
+            }
+        }
     }
 }

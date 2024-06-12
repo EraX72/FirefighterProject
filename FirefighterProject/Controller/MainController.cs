@@ -200,5 +200,23 @@ namespace FirefighterProject.Controller
                 return firefighters;
             }
         }
+
+        public Firefighters GetTopFirefighter()
+        {
+            using (var db = new FirefighterDbContext())
+            {
+                var topFirefighter = db.Firefighters
+                    .Select(f => new
+                    {
+                        Firefighter = f,
+                        IncidentCount = db.IncidentParticipants.Count(p => p.FirefighterID == f.FirefighterID)
+                    })
+                    .OrderByDescending(f => f.IncidentCount)
+                    .Select(f => f.Firefighter)
+                    .FirstOrDefault();
+
+                return topFirefighter;
+            }
+        }
     }
 }
