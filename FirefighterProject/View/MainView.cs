@@ -100,8 +100,8 @@ namespace FirefighterProject.View
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            var username = Prompt.ShowDialog("Enter Username:", "Add Firefighter");
-            var password = Prompt.ShowDialog("Enter Password:", "Add Firefighter");
+            var username = Prompt.ShowDialog("Enter Username:", "Add Firefighter (e.g., johndoe)");
+            var password = Prompt.ShowDialog("Enter Password:", "Add Firefighter (e.g., password123)");
 
             if (_controller.AddFirefighter(username, password))
             {
@@ -116,7 +116,7 @@ namespace FirefighterProject.View
 
         private void btnDash_Click_1(object sender, EventArgs e)
         {
-            _controller.LoadDashboard();
+            _controller.LoadDashboard(dataGridViewIncidents);
         }
 
         private void btnViewIncidents_Click(object sender, EventArgs e)
@@ -159,57 +159,94 @@ namespace FirefighterProject.View
 
         private void btnAddIncident_Click(object sender, EventArgs e)
         {
-            var date = DateTime.Parse(Prompt.ShowDialog("Enter Incident Date:", "Add Incident"));
-            var duration = TimeSpan.Parse(Prompt.ShowDialog("Enter Incident Duration:", "Add Incident"));
-            var waterUsed = decimal.Parse(Prompt.ShowDialog("Enter Water Used:", "Add Incident"));
-            var firetruckID = int.Parse(Prompt.ShowDialog("Enter Firetruck ID:", "Add Incident"));
-            var firefighterIDs = Prompt.ShowDialog("Enter Firefighter IDs (comma separated):", "Add Incident")
-                .Split(',')
-                .Select(int.Parse)
-                .ToArray();
+            try
+            {
+                var dateStr = Prompt.ShowDialog("Enter Incident Date (e.g., 2024-06-15):", "Add Incident");
+                var durationStr = Prompt.ShowDialog("Enter Incident Duration (e.g., 02:30:00):", "Add Incident");
+                var waterUsedStr = Prompt.ShowDialog("Enter Water Used (e.g., 150.5):", "Add Incident");
+                var firetruckIDStr = Prompt.ShowDialog("Enter Firetruck ID (e.g., 1):", "Add Incident");
+                var firefighterIDsStr = Prompt.ShowDialog("Enter Firefighter IDs (comma separated, e.g., 1,2,3):", "Add Incident");
 
-            _controller.AddIncident(date, duration, waterUsed, firetruckID, firefighterIDs);
-            MessageBox.Show("Incident added successfully");
-            LoadIncidentDataGrid();
+                if (DateTime.TryParse(dateStr, out var date) &&
+                    TimeSpan.TryParse(durationStr, out var duration) &&
+                    decimal.TryParse(waterUsedStr, out var waterUsed) &&
+                    int.TryParse(firetruckIDStr, out var firetruckID) &&
+                    firefighterIDsStr.Split(',').All(id => int.TryParse(id, out _)))
+                {
+                    var firefighterIDs = firefighterIDsStr.Split(',').Select(int.Parse).ToArray();
+
+                    if (_controller.AddIncident(date, duration, waterUsed, firetruckID, firefighterIDs))
+                    {
+                        MessageBox.Show("Incident added successfully");
+                        _controller.LoadDashboard(dataGridViewIncidents); // Refresh the dashboard
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add incident. Ensure Firetruck and Firefighters exist.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input. Please check all fields and try again.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
         }
-
         private void btnAddFiretruck_Click(object sender, EventArgs e)
         {
-            var isMondayShift = bool.Parse(Prompt.ShowDialog("Is Monday Shift?", "Add Firetruck"));
-            var isTuesdayShift = bool.Parse(Prompt.ShowDialog("Is Tuesday Shift?", "Add Firetruck"));
-            var isWednesdayShift = bool.Parse(Prompt.ShowDialog("Is Wednesday Shift?", "Add Firetruck"));
-            var isThursdayShift = bool.Parse(Prompt.ShowDialog("Is Thursday Shift?", "Add Firetruck"));
-            var isFridayShift = bool.Parse(Prompt.ShowDialog("Is Friday Shift?", "Add Firetruck"));
-            var isSaturdayShift = bool.Parse(Prompt.ShowDialog("Is Saturday Shift?", "Add Firetruck"));
-            var isSundayShift = bool.Parse(Prompt.ShowDialog("Is Sunday Shift?", "Add Firetruck"));
+            try
+            {
+                var firetruckID = int.Parse(Prompt.ShowDialog("Enter Firetruck ID (e.g., 123):", "Add Firetruck"));
+                var isMondayShift = bool.Parse(Prompt.ShowDialog("Is Monday Shift? (true/false):", "Add Firetruck"));
+                var isTuesdayShift = bool.Parse(Prompt.ShowDialog("Is Tuesday Shift? (true/false):", "Add Firetruck"));
+                var isWednesdayShift = bool.Parse(Prompt.ShowDialog("Is Wednesday Shift? (true/false):", "Add Firetruck"));
+                var isThursdayShift = bool.Parse(Prompt.ShowDialog("Is Thursday Shift? (true/false):", "Add Firetruck"));
+                var isFridayShift = bool.Parse(Prompt.ShowDialog("Is Friday Shift? (true/false):", "Add Firetruck"));
+                var isSaturdayShift = bool.Parse(Prompt.ShowDialog("Is Saturday Shift? (true/false):", "Add Firetruck"));
+                var isSundayShift = bool.Parse(Prompt.ShowDialog("Is Sunday Shift? (true/false):", "Add Firetruck"));
 
-            if (_controller.AddFiretruck(isMondayShift, isTuesdayShift, isWednesdayShift, isThursdayShift, isFridayShift, isSaturdayShift, isSundayShift))
-            {
-                MessageBox.Show("Firetruck added successfully");
-                LoadIncidentDataGrid();
+                if (_controller.AddFiretruck(firetruckID, isMondayShift, isTuesdayShift, isWednesdayShift, isThursdayShift, isFridayShift, isSaturdayShift, isSundayShift))
+                {
+                    MessageBox.Show("Firetruck added successfully");
+                    LoadIncidentDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Firetruck ID already exists");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Failed to add firetruck");
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
 
         private void btnAssignFirefightersToFiretruck_Click(object sender, EventArgs e)
         {
-            var firetruckID = int.Parse(Prompt.ShowDialog("Enter Firetruck ID:", "Assign Firefighters"));
-            var firefighterIDs = Prompt.ShowDialog("Enter Firefighter IDs (comma separated):", "Assign Firefighters")
-                .Split(',')
-                .Select(int.Parse)
-                .ToArray();
+            try
+            {
+                var firetruckID = int.Parse(Prompt.ShowDialog("Enter Firetruck ID (e.g., 123):", "Assign Firefighters"));
+                var firefighterIDs = Prompt.ShowDialog("Enter Firefighter IDs (comma separated, e.g., 1,2,3):", "Assign Firefighters")
+                    .Split(',')
+                    .Select(int.Parse)
+                    .ToArray();
 
-            if (_controller.AssignFirefightersToFiretruck(firetruckID, firefighterIDs))
-            {
-                MessageBox.Show("Firefighters assigned successfully");
-                LoadDataGrid();
+                if (_controller.AssignFirefightersToFiretruck(firetruckID, firefighterIDs))
+                {
+                    MessageBox.Show("Firefighters assigned successfully");
+                    LoadDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to assign firefighters");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Failed to assign firefighters");
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
     }
