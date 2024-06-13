@@ -2,7 +2,6 @@
 using FirefighterProject.Model;
 using System;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -60,7 +59,16 @@ namespace FirefighterProject.Controller
             }
         }
 
-        public bool AddIncident(DateTime date, TimeSpan duration, decimal waterUsed, int firetruckID, int[] firefighterIDs)
+        public int GetNextIncidentID()
+        {
+            using (var context = new FirefighterDbContext())
+            {
+                var maxIncidentID = context.Incidents.Max(i => (int?)i.IncidentID) ?? 0;
+                return maxIncidentID + 1;
+            }
+        }
+
+        public bool AddIncident(int nextIncidentID, DateTime date, TimeSpan duration, decimal waterUsed, int firetruckID, int[] firefighterIDs)
         {
             using (var db = new FirefighterDbContext())
             {
@@ -84,6 +92,7 @@ namespace FirefighterProject.Controller
                 // Create a new incident
                 var incident = new Incidents
                 {
+                    IncidentID = nextIncidentID,
                     Date = date,
                     Duration = duration,
                     WaterUsed = waterUsed,

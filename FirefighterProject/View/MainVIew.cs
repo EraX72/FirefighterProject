@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using FirefighterProject.Controller;
 using FirefighterProject.Data;
@@ -17,6 +18,15 @@ namespace FirefighterProject.View
             _controller = new MainController();
             LoadDataGrid();
             LoadIncidentDataGrid();
+
+            // Add the AddIncident button
+            var btnAddIncident = new Button
+            {
+                Text = "Add Incident",
+                Location = new System.Drawing.Point(10, 300) // Adjust the location as needed
+            };
+            btnAddIncident.Click += new EventHandler(btnAddIncident_Click);
+            Controls.Add(btnAddIncident);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -161,12 +171,14 @@ namespace FirefighterProject.View
         {
             try
             {
+                // Prompt the user for input
                 var dateStr = Prompt.ShowDialog("Enter Incident Date (e.g., 2024-06-15):", "Add Incident");
                 var durationStr = Prompt.ShowDialog("Enter Incident Duration (e.g., 02:30:00):", "Add Incident");
                 var waterUsedStr = Prompt.ShowDialog("Enter Water Used (e.g., 150.5):", "Add Incident");
                 var firetruckIDStr = Prompt.ShowDialog("Enter Firetruck ID (e.g., 1):", "Add Incident");
                 var firefighterIDsStr = Prompt.ShowDialog("Enter Firefighter IDs (comma separated, e.g., 1,2,3):", "Add Incident");
 
+                // Validate inputs
                 if (DateTime.TryParse(dateStr, out var date) &&
                     TimeSpan.TryParse(durationStr, out var duration) &&
                     decimal.TryParse(waterUsedStr, out var waterUsed) &&
@@ -175,7 +187,11 @@ namespace FirefighterProject.View
                 {
                     var firefighterIDs = firefighterIDsStr.Split(',').Select(int.Parse).ToArray();
 
-                    if (_controller.AddIncident(date, duration, waterUsed, firetruckID, firefighterIDs))
+                    // Get the next IncidentID
+                    var nextIncidentID = _controller.GetNextIncidentID();
+
+                    // Add the new incident
+                    if (_controller.AddIncident(nextIncidentID, date, duration, waterUsed, firetruckID, firefighterIDs))
                     {
                         MessageBox.Show("Incident added successfully");
                         _controller.LoadDashboard(dataGridViewIncidents); // Refresh the dashboard
@@ -192,8 +208,24 @@ namespace FirefighterProject.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                LogError(ex); // Log the error for further analysis
+                MessageBox.Show($"Error while saving the incident: {ex.Message}");
             }
+        }
+
+        // Method to log errors
+        private void LogError(Exception ex)
+        {
+            var errorMessage = new StringBuilder();
+            errorMessage.AppendLine($"Exception: {ex.Message}");
+            var inner = ex.InnerException;
+            while (inner != null)
+            {
+                errorMessage.AppendLine($"Inner Exception: {inner.Message}");
+                inner = inner.InnerException;
+            }
+            // Log the error message (you could write this to a file or a logging system)
+            Console.WriteLine(errorMessage.ToString());
         }
         private void btnAddFiretruck_Click(object sender, EventArgs e)
         {
