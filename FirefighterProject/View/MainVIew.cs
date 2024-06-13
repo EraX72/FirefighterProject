@@ -17,9 +17,7 @@ namespace FirefighterProject.View
             _controller = new MainController();
             LoadDataGrid();
             LoadIncidentDataGrid();
-            EnsureFiretrucksExist();
         }
-
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -104,60 +102,25 @@ namespace FirefighterProject.View
         {
             var username = Prompt.ShowDialog("Enter Username:", "Add Firefighter");
             var password = Prompt.ShowDialog("Enter Password:", "Add Firefighter");
-            var firetruckIDInput = Prompt.ShowDialog("Enter Firetruck ID:", "Add Firefighter");
-            int firetruckID;
 
-            // Validate the entered Firetruck ID
-            if (!int.TryParse(firetruckIDInput, out firetruckID))
-            {
-                MessageBox.Show("Invalid Firetruck ID. Please enter a valid number.");
-                return;
-            }
-
-            // Attempt to add the firefighter with the provided Firetruck ID
-            if (_controller.AddFirefighter(username, password, firetruckID))
+            if (_controller.AddFirefighter(username, password))
             {
                 MessageBox.Show("Firefighter added successfully");
                 LoadDataGrid();
             }
             else
             {
-                MessageBox.Show("Firetruck ID does not exist. Please enter a valid Firetruck ID.");
-            }
-        }
-
-        private void EnsureFiretrucksExist()
-        {
-            using (var db = new FirefighterDbContext())
-            {
-                if (!db.Firetrucks.Any())
-                {
-                    db.Firetrucks.Add(new Firetrucks { IsMondayShift = true, IsTuesdayShift = true, IsWednesdayShift = true, IsThursdayShift = true, IsFridayShift = true, IsSaturdayShift = false, IsSundayShift = false });
-                    db.Firetrucks.Add(new Firetrucks { IsMondayShift = false, IsTuesdayShift = false, IsWednesdayShift = false, IsThursdayShift = false, IsFridayShift = false, IsSaturdayShift = true, IsSundayShift = true });
-                    db.SaveChanges();
-                }
+                MessageBox.Show("Username already exists");
             }
         }
 
         private void btnDash_Click_1(object sender, EventArgs e)
         {
             _controller.LoadDashboard();
-            MessageBox.Show("Dashboard data loaded");
         }
 
-        private void btnAddIncident_Click(object sender, EventArgs e)
+        private void btnViewIncidents_Click(object sender, EventArgs e)
         {
-            var date = DateTime.Parse(Prompt.ShowDialog("Enter Date (yyyy-mm-dd) :", "Add Incident"));
-            var duration = TimeSpan.Parse(Prompt.ShowDialog("Enter Duration (hh:mm:ss) :", "Add Incident"));
-            var waterUsed = decimal.Parse(Prompt.ShowDialog("Enter Water Used  (liters) :", "Add Incident"));
-            var firetruckID = int.Parse(Prompt.ShowDialog("Enter Firetruck ID:", "Add Incident"));
-            var firefighterIDs = Prompt.ShowDialog("Enter Firefighter IDs  (comma separated) :", "Add Incident")
-                .Split(',')
-                .Select(int.Parse)
-                .ToArray();
-
-            _controller.AddIncident(date, duration, waterUsed, firetruckID, firefighterIDs);
-            MessageBox.Show("Incident added successfully");
             LoadIncidentDataGrid();
         }
 
@@ -167,7 +130,12 @@ namespace FirefighterProject.View
             {
                 var incidentID = (int)dataGridViewIncidents.SelectedRows[0].Cells["IncidentID"].Value;
                 var details = _controller.GetIncidentDetails(incidentID);
-                MessageBox.Show(details.ToString());
+
+                var detailString = details == null
+                    ? "Incident not found"
+                    : $"IncidentID = {details.IncidentID}, Date = {details.Date}, Duration = {details.Duration}, WaterUsed = {details.WaterUsed}, FiretruckID = {details.FiretruckID}, Firefighters = {string.Join(", ", details.Firefighters)}";
+
+                MessageBox.Show(detailString);
             }
             else
             {
@@ -175,68 +143,73 @@ namespace FirefighterProject.View
             }
         }
 
+        private void btnViewTopFirefighters_Click(object sender, EventArgs e)
+        {
+            var topFirefighters = _controller.GetTopFirefighters(5);
+            var topFirefightersString = string.Join(Environment.NewLine, topFirefighters.Select(f => $"Firefighter: {f.Firefighter}, IncidentCount: {f.IncidentCount}"));
+            MessageBox.Show(topFirefightersString);
+        }
+
+        private void btnViewTopFiretrucks_Click(object sender, EventArgs e)
+        {
+            var topFiretrucks = _controller.GetTopFiretrucks(5);
+            var topFiretrucksString = string.Join(Environment.NewLine, topFiretrucks.Select(t => $"FiretruckID: {t.FiretruckID}, IncidentCount: {t.IncidentCount}"));
+            MessageBox.Show(topFiretrucksString);
+        }
+
+        private void btnAddIncident_Click(object sender, EventArgs e)
+        {
+            var date = DateTime.Parse(Prompt.ShowDialog("Enter Incident Date:", "Add Incident"));
+            var duration = TimeSpan.Parse(Prompt.ShowDialog("Enter Incident Duration:", "Add Incident"));
+            var waterUsed = decimal.Parse(Prompt.ShowDialog("Enter Water Used:", "Add Incident"));
+            var firetruckID = int.Parse(Prompt.ShowDialog("Enter Firetruck ID:", "Add Incident"));
+            var firefighterIDs = Prompt.ShowDialog("Enter Firefighter IDs (comma separated):", "Add Incident")
+                .Split(',')
+                .Select(int.Parse)
+                .ToArray();
+
+            _controller.AddIncident(date, duration, waterUsed, firetruckID, firefighterIDs);
+            MessageBox.Show("Incident added successfully");
+            LoadIncidentDataGrid();
+        }
+
         private void btnAddFiretruck_Click(object sender, EventArgs e)
         {
-            var isMondayShift = bool.Parse(Prompt.ShowDialog("Is Monday Shift? (true/false):", "Add Firetruck"));
-            var isTuesdayShift = bool.Parse(Prompt.ShowDialog("Is Tuesday Shift? (true/false):", "Add Firetruck"));
-            var isWednesdayShift = bool.Parse(Prompt.ShowDialog("Is Wednesday Shift? (true/false):", "Add Firetruck"));
-            var isThursdayShift = bool.Parse(Prompt.ShowDialog("Is Thursday Shift? (true/false):", "Add Firetruck"));
-            var isFridayShift = bool.Parse(Prompt.ShowDialog("Is Friday Shift? (true/false):", "Add Firetruck"));
-            var isSaturdayShift = bool.Parse(Prompt.ShowDialog("Is Saturday Shift? (true/false):", "Add Firetruck"));
-            var isSundayShift = bool.Parse(Prompt.ShowDialog("Is Sunday Shift? (true/false):", "Add Firetruck"));
+            var isMondayShift = bool.Parse(Prompt.ShowDialog("Is Monday Shift?", "Add Firetruck"));
+            var isTuesdayShift = bool.Parse(Prompt.ShowDialog("Is Tuesday Shift?", "Add Firetruck"));
+            var isWednesdayShift = bool.Parse(Prompt.ShowDialog("Is Wednesday Shift?", "Add Firetruck"));
+            var isThursdayShift = bool.Parse(Prompt.ShowDialog("Is Thursday Shift?", "Add Firetruck"));
+            var isFridayShift = bool.Parse(Prompt.ShowDialog("Is Friday Shift?", "Add Firetruck"));
+            var isSaturdayShift = bool.Parse(Prompt.ShowDialog("Is Saturday Shift?", "Add Firetruck"));
+            var isSundayShift = bool.Parse(Prompt.ShowDialog("Is Sunday Shift?", "Add Firetruck"));
 
             if (_controller.AddFiretruck(isMondayShift, isTuesdayShift, isWednesdayShift, isThursdayShift, isFridayShift, isSaturdayShift, isSundayShift))
             {
                 MessageBox.Show("Firetruck added successfully");
+                LoadIncidentDataGrid();
             }
             else
             {
-                MessageBox.Show("Error adding firetruck");
+                MessageBox.Show("Failed to add firetruck");
             }
         }
 
         private void btnAssignFirefightersToFiretruck_Click(object sender, EventArgs e)
         {
-            var firetruckID = int.Parse(Prompt.ShowDialog("Enter Firetruck ID:", "Assign Firefighters to Firetruck"));
-            var firefighterIDs = Prompt.ShowDialog("Enter Firefighter IDs  |comma separated| :", "Assign Firefighters to Firetruck")
+            var firetruckID = int.Parse(Prompt.ShowDialog("Enter Firetruck ID:", "Assign Firefighters"));
+            var firefighterIDs = Prompt.ShowDialog("Enter Firefighter IDs (comma separated):", "Assign Firefighters")
                 .Split(',')
                 .Select(int.Parse)
                 .ToArray();
 
             if (_controller.AssignFirefightersToFiretruck(firetruckID, firefighterIDs))
             {
-                MessageBox.Show("Firefighters assigned to firetruck successfully");
+                MessageBox.Show("Firefighters assigned successfully");
                 LoadDataGrid();
             }
             else
             {
-                MessageBox.Show("Error assigning firefighters to firetruck");
-            }
-
-        }
-        private void btnShowDialog_Click(object sender, EventArgs e)
-        {
-            string result = Prompt.ShowDialog("Title", "Default Text");
-            MessageBox.Show("Dialog Result: " + result);
-        }
-
-
-        private void btnSortFirefighters_Click(object sender, EventArgs e)
-        {
-            var sortedFirefighters = _controller.GetFirefightersByIncidentCount();
-            dataGridView1.DataSource = sortedFirefighters;
-        }
-
-        private void btnTop_Click(object sender, EventArgs e)
-        {
-            var topFirefighter = _controller.GetTopFirefighter();
-            if (topFirefighter != null)
-            {
-                MessageBox.Show($"Top Firefighter: {topFirefighter.Username}\nIncident Count: {topFirefighter.IncidentParticipants.Count}");
-            }
-            else
-            {
-                MessageBox.Show("No firefighters found.");
+                MessageBox.Show("Failed to assign firefighters");
             }
         }
     }

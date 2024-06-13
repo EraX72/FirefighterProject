@@ -270,10 +270,13 @@
     <Compile Include="Model\Firetrucks.cs">
       <DependentUpon>FirefighterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\IncidentDetailsDTO.cs" />
     <Compile Include="Model\IncidentParticipants.cs" />
     <Compile Include="Model\Incidents.cs">
       <DependentUpon>FirefighterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TopFirefighterDTO.cs" />
+    <Compile Include="Model\TopFiretruckDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Prompt.cs" />

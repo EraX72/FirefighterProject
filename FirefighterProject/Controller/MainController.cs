@@ -1,222 +1,177 @@
-﻿using System;
+﻿using FirefighterProject.Data;
+using FirefighterProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using FirefighterProject.Data;
-using FirefighterProject.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace FirefighterProject.Controller
 {
-    internal class MainController
+    public class MainController
     {
-        public void LoadDashboard()
+        private readonly FirefighterDbContext _context;
+
+        public MainController()
         {
-            // Implement dashboard loading logic
+            _context = new FirefighterDbContext();
         }
 
-        public bool AddFirefighter(string username, string password, int firetruckID)
+        public bool AddFirefighter(string username, string password)
         {
-            using (var db = new FirefighterDbContext())
-            {
-                if (db.Firefighters.Any(u => u.Username == username))
-                {
-                    return false;
-                }
+            if (_context.Firefighters.Any(f => f.Username == username))
+                return false;
 
-                // Check if the provided FiretruckID exists
-                var validFiretruck = db.Firetrucks.FirstOrDefault(ft => ft.FiretruckID == firetruckID);
-
-                if (validFiretruck == null)
-                {
-                    // If the provided FiretruckID does not exist, return false
-                    return false;
-                }
-
-                var firefighter = new Firefighters
-                {
-                    Username = username,
-                    Password = password,
-                    FiretruckID = firetruckID,
-                };
-
-                var existingFirefighters = db.Firefighters.OrderByDescending(f => f.FirefighterID).FirstOrDefault();
-                firefighter.FirefighterID = existingFirefighters?.FirefighterID + 1 ?? 1;
-
-                db.Firefighters.Add(firefighter);
-                db.SaveChanges();
-
-                return true;
-            }
+            var firefighter = new Firefighters { Username = username, Password = password };
+            _context.Firefighters.Add(firefighter);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool UpdateFirefighter(int id, string username, string password)
         {
-            using (var db = new FirefighterDbContext())
-            {
-                var firefighter = db.Firefighters.FirstOrDefault(f => f.FirefighterID == id);
-                if (firefighter == null)
-                {
-                    return false;
-                }
+            var firefighter = _context.Firefighters.Find(id);
+            if (firefighter == null)
+                return false;
 
-                firefighter.Username = username;
-                firefighter.Password = password;
-                db.SaveChanges();
-
-                return true;
-            }
+            firefighter.Username = username;
+            firefighter.Password = password;
+            _context.SaveChanges();
+            return true;
         }
 
         public bool DeleteFirefighter(int id)
         {
-            using (var db = new FirefighterDbContext())
-            {
-                var firefighter = db.Firefighters.FirstOrDefault(f => f.FirefighterID == id);
-                if (firefighter == null)
-                {
-                    return false;
-                }
+            var firefighter = _context.Firefighters.Find(id);
+            if (firefighter == null)
+                return false;
 
-                db.Firefighters.Remove(firefighter);
-                db.SaveChanges();
+            _context.Firefighters.Remove(firefighter);
+            _context.SaveChanges();
+            return true;
+        }
 
-                return true;
-            }
+        public void LoadDashboard()
+        {
+            // Add dashboard logic here
         }
 
         public void AddIncident(DateTime date, TimeSpan duration, decimal waterUsed, int firetruckID, int[] firefighterIDs)
         {
-            using (var db = new FirefighterDbContext())
+            var incident = new Incidents
             {
-                var incident = new Incidents
-                {
-                    Date = date,
-                    Duration = duration,
-                    WaterUsed = waterUsed,
-                    FiretruckID = firetruckID
-                };
+                Date = date,
+                Duration = duration,
+                WaterUsed = waterUsed,
+                FiretruckID = firetruckID
+            };
 
-                var existingIncidents = db.Incidents.OrderByDescending(i => i.IncidentID).FirstOrDefault();
-                incident.IncidentID = existingIncidents?.IncidentID + 1 ?? 1;
+            _context.Incidents.Add(incident);
+            _context.SaveChanges();
 
-                db.Incidents.Add(incident);
-                db.SaveChanges();
+            var incidentParticipants = firefighterIDs.Select(id => new IncidentParticipants
+            {
+                IncidentID = incident.IncidentID,
+                FirefighterID = id
+            }).ToList();
 
-                foreach (var firefighterID in firefighterIDs)
-                {
-                    var participant = new IncidentParticipants
-                    {
-                        IncidentID = incident.IncidentID,
-                        FirefighterID = firefighterID
-                    };
-                    db.IncidentParticipants.Add(participant);
-                }
-
-                db.SaveChanges();
-            }
+            _context.IncidentParticipants.AddRange(incidentParticipants);
+            _context.SaveChanges();
         }
 
-        public object GetIncidentDetails(int incidentID)
+        public IncidentDetailsDTO GetIncidentDetails(int incidentID)
         {
-            using (var db = new FirefighterDbContext())
-            {
-                var incident = db.Incidents
-                    .Where(i => i.IncidentID == incidentID)
-                    .Select(i => new
-                    {
-                        i.IncidentID,
-                        i.Date,
-                        i.Duration,
-                        i.WaterUsed,
-                        i.FiretruckID,
-                        Firefighters = i.IncidentParticipants.Select(p => p.Firefighter).ToList()
-                    }).FirstOrDefault();
+            var incident = _context.Incidents
+                .SingleOrDefault(i => i.IncidentID == incidentID);
 
-                return incident;
-            }
+            if (incident == null)
+                return null;
+
+            var firefighterIDs = _context.IncidentParticipants
+                .Where(ip => ip.IncidentID == incidentID)
+                .Select(ip => ip.FirefighterID)
+                .ToList();
+
+            var firefighters = _context.Firefighters
+                .Where(f => firefighterIDs.Contains(f.FirefighterID))
+                .Select(f => f.Username)
+                .ToList();
+
+            return new IncidentDetailsDTO
+            {
+                IncidentID = incident.IncidentID,
+                Date = incident.Date,
+                Duration = incident.Duration,
+                WaterUsed = incident.WaterUsed,
+                FiretruckID = incident.FiretruckID,
+                Firefighters = firefighters
+            };
+        }
+
+        public List<TopFirefighterDTO> GetTopFirefighters(int count)
+        {
+            var topFirefighters = _context.IncidentParticipants
+                .GroupBy(ip => ip.FirefighterID)
+                .Select(g => new TopFirefighterDTO
+                {
+                    FirefighterID = g.Key,
+                    IncidentCount = g.Count(),
+                    Firefighter = _context.Firefighters.FirstOrDefault(f => f.FirefighterID == g.Key).Username
+                })
+                .OrderByDescending(f => f.IncidentCount)
+                .Take(count)
+                .ToList();
+
+            return topFirefighters;
+        }
+
+        public List<TopFiretruckDTO> GetTopFiretrucks(int count)
+        {
+            var topFiretrucks = _context.Incidents
+                .GroupBy(i => i.FiretruckID)
+                .Select(g => new TopFiretruckDTO
+                {
+                    FiretruckID = g.Key,
+                    IncidentCount = g.Count()
+                })
+                .OrderByDescending(f => f.IncidentCount)
+                .Take(count)
+                .ToList();
+
+            return topFiretrucks;
         }
 
         public bool AddFiretruck(bool isMondayShift, bool isTuesdayShift, bool isWednesdayShift, bool isThursdayShift, bool isFridayShift, bool isSaturdayShift, bool isSundayShift)
         {
-            using (var db = new FirefighterDbContext())
+            var firetruck = new Firetrucks
             {
-                var firetruck = new Firetrucks
-                {
-                    IsMondayShift = isMondayShift,
-                    IsTuesdayShift = isTuesdayShift,
-                    IsWednesdayShift = isWednesdayShift,
-                    IsThursdayShift = isThursdayShift,
-                    IsFridayShift = isFridayShift,
-                    IsSaturdayShift = isSaturdayShift,
-                    IsSundayShift = isSundayShift
-                };
+                IsMondayShift = isMondayShift,
+                IsTuesdayShift = isTuesdayShift,
+                IsWednesdayShift = isWednesdayShift,
+                IsThursdayShift = isThursdayShift,
+                IsFridayShift = isFridayShift,
+                IsSaturdayShift = isSaturdayShift,
+                IsSundayShift = isSundayShift
+            };
 
-                var existingFiretrucks = db.Firetrucks.OrderByDescending(f => f.FiretruckID).FirstOrDefault();
-                firetruck.FiretruckID = existingFiretrucks?.FiretruckID + 1 ?? 1;
-
-                db.Firetrucks.Add(firetruck);
-                db.SaveChanges();
-
-                return true;
-            }
+            _context.Firetrucks.Add(firetruck);
+            _context.SaveChanges();
+            return true;
         }
 
         public bool AssignFirefightersToFiretruck(int firetruckID, int[] firefighterIDs)
         {
-            using (var db = new FirefighterDbContext())
+            var firetruck = _context.Firetrucks.Find(firetruckID);
+            if (firetruck == null)
+                return false;
+
+            var firefighters = _context.Firefighters.Where(f => firefighterIDs.Contains(f.FirefighterID)).ToList();
+            foreach (var firefighter in firefighters)
             {
-                var firetruck = db.Firetrucks.FirstOrDefault(f => f.FiretruckID == firetruckID);
-                if (firetruck == null)
-                {
-                    return false;
-                }
-
-                var firefighters = db.Firefighters.Where(f => firefighterIDs.Contains(f.FirefighterID)).ToList();
-
-                foreach (var firefighter in firefighters)
-                {
-                    firefighter.FiretruckID = firetruckID;
-                }
-
-                db.SaveChanges();
-
-                return true;
+                firefighter.FiretruckID = firetruckID;
             }
-        }
 
-        public List<Firefighters> GetFirefightersByIncidentCount()
-        {
-            using (var db = new FirefighterDbContext())
-            {
-                var firefighters = db.Firefighters
-                    .Select(f => new
-                    {
-                        Firefighter = f,
-                        IncidentCount = db.Incidents.Count(i => i.Firetruck.Firefighters.Any(ff => ff.FirefighterID == f.FirefighterID))
-                    })
-                    .OrderByDescending(f => f.IncidentCount)
-                    .Select(f => f.Firefighter)
-                    .ToList();
-
-                return firefighters;
-            }
-        }
-
-        public Firefighters GetTopFirefighter()
-        {
-            using (var db = new FirefighterDbContext())
-            {
-                var topFirefighter = db.Firefighters
-                    .Select(f => new
-                    {
-                        Firefighter = f,
-                        IncidentCount = db.IncidentParticipants.Count(p => p.FirefighterID == f.FirefighterID)
-                    })
-                    .OrderByDescending(f => f.IncidentCount)
-                    .Select(f => f.Firefighter)
-                    .FirstOrDefault();
-
-                return topFirefighter;
-            }
+            _context.SaveChanges();
+            return true;
         }
     }
 }
