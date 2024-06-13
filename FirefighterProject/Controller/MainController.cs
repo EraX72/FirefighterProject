@@ -1,9 +1,10 @@
 ﻿using FirefighterProject.Data;
 using FirefighterProject.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace FirefighterProject.Controller
 {
@@ -50,32 +51,72 @@ namespace FirefighterProject.Controller
             return true;
         }
 
-        public void LoadDashboard()
+        public void LoadDashboard(DataGridView dataGridViewIncidents)
         {
-            // Add dashboard logic here
+            using (var db = new FirefighterDbContext())
+            {
+                var incidents = db.Incidents.ToList();
+                dataGridViewIncidents.DataSource = incidents;
+            }
         }
 
-        public void AddIncident(DateTime date, TimeSpan duration, decimal waterUsed, int firetruckID, int[] firefighterIDs)
+        public bool AddIncident(DateTime date, TimeSpan duration, decimal waterUsed, int firetruckID, int[] firefighterIDs)
         {
-            var incident = new Incidents
+            using (var db = new FirefighterDbContext())
             {
-                Date = date,
-                Duration = duration,
-                WaterUsed = waterUsed,
-                FiretruckID = firetruckID
-            };
+                // Check if the firetruck exists
+                var firetruck = db.Firetrucks.SingleOrDefault(ft => ft.FiretruckID == firetruckID);
+                if (firetruck == null)
+                {
+                    MessageBox.Show($"Firetruck with ID {firetruckID} does not exist.");
+                    return false;
+                }
 
-            _context.Incidents.Add(incident);
-            _context.SaveChanges();
+                // Check if all firefighters exist
+                var firefighters = db.Firefighters.Where(ff => firefighterIDs.Contains(ff.FirefighterID)).ToList();
+                if (firefighters.Count != firefighterIDs.Length)
+                {
+                    var missingFirefighters = firefighterIDs.Except(firefighters.Select(ff => ff.FirefighterID)).ToList();
+                    MessageBox.Show($"The following firefighter IDs do not exist: {string.Join(", ", missingFirefighters)}");
+                    return false;
+                }
 
-            var incidentParticipants = firefighterIDs.Select(id => new IncidentParticipants
-            {
-                IncidentID = incident.IncidentID,
-                FirefighterID = id
-            }).ToList();
+                // Create a new incident
+                var incident = new Incidents
+                {
+                    Date = date,
+                    Duration = duration,
+                    WaterUsed = waterUsed,
+                    FiretruckID = firetruckID
+                };
 
-            _context.IncidentParticipants.AddRange(incidentParticipants);
-            _context.SaveChanges();
+                db.Incidents.Add(incident);
+
+                try
+                {
+                    db.SaveChanges();
+
+                    // Create incident participants records
+                    foreach (var firefighterID in firefighterIDs)
+                    {
+                        var participant = new IncidentParticipants
+                        {
+                            IncidentID = incident.IncidentID,
+                            FirefighterID = firefighterID
+                        };
+                        db.IncidentParticipants.Add(participant);
+                    }
+
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception or handle it as necessary
+                    MessageBox.Show($"Error while saving the incident: {ex.Message}");
+                    return false;
+                }
+            }
         }
 
         public IncidentDetailsDTO GetIncidentDetails(int incidentID)
@@ -140,10 +181,14 @@ namespace FirefighterProject.Controller
             return topFiretrucks;
         }
 
-        public bool AddFiretruck(bool isMondayShift, bool isTuesdayShift, bool isWednesdayShift, bool isThursdayShift, bool isFridayShift, bool isSaturdayShift, bool isSundayShift)
+        public bool AddFiretruck(int firetruckID, bool isMondayShift, bool isTuesdayShift, bool isWednesdayShift, bool isThursdayShift, bool isFridayShift, bool isSaturdayShift, bool isSundayShift)
         {
+            if (_context.Firetrucks.Any(ft => ft.FiretruckID == firetruckID))
+                return false;
+
             var firetruck = new Firetrucks
             {
+                FiretruckID = firetruckID,
                 IsMondayShift = isMondayShift,
                 IsTuesdayShift = isTuesdayShift,
                 IsWednesdayShift = isWednesdayShift,
